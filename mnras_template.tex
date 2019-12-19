@@ -145,7 +145,7 @@
 
 % Title of the paper, and the short title which is used in the headers.
 % Keep the title short and informative.
-\title[Short title, max. 45 characters]{Defining and characterising the target selection for DESI BGS - other test}
+\title[Short title, max. 45 characters]{Defining and characterising the target selection for DESI BGS}
 
 % The list of authors, and the short list which is used in the headers.
 % If you need two or more lines of authors, add an extra line using \newauthor
@@ -372,9 +372,11 @@ Fig.~\ref{fig:2dstack_tycho_reescaled}, we see a spike up spurious sources for $
 
 \subsubsection{Large Galaxies}
 
-\warn{Likewise}{As opposed to the circular} masking around BS, the masking around Large Galaxies (LG) consists of predefined elliptical masks taken from the LSLGA catalogue (see \ref{subsec:LSLGA}).
+As opposed to the circular masking around BS, the masking around Large Galaxies (LG) consists of predefined elliptical masks taken from the LSLGA catalogue (see \ref{subsec:LSLGA}).
 
 The LG mask is way less aggressive than the BS mask, rejecting only $0.13 \%$ of initial area which $~33$ deg$^{-2}$ of those are bright objects and $~3$ deg$^{-2}$ are faint.
+
+\omar{include more info here...}
 
 \subsubsection{Globular Clusters}
 
@@ -382,13 +384,17 @@ The globular cluster (GC) mask works similar to the BS mask and apply predefined
 
 The GC mask has the smallest impact of the geometric masks, rejecting only $0.02 \%$ of initial area along with  $~15$ bright galaxies deg$^{-2}$ and $~5$ faint galaxies deg$^{-2}$.
 
+\omar{more info here too...}
+
 \subsection{Pixel}\label{subsec:pix_masking}
-Some of the effects that compromises the pixels and the model fitting itself includes bad pixels, saturation, cosmic rays, bleed trails, transients, etc. The NOAO DECam CP identifies these instrumental effects during their various calibrations\footnote{The document that lists all the calibrations and has details on the various maska can be found at: \url{https://www.noao.edu/noao/staff/fvaldes/CPDocPrelim/PL201\_3.html}} (see Table $5$ in \citep{2019AJ....157..168D} for the various calibratioons) and these are passed through \TRACTOR and compiled in the ALLMASK/ANYMASK bitmask\footnote{Details of these bitmask here: http://legacysurvey.org/\DReight/bitmasks/\#id3}. ANYMASK denotes a source that touches a bad pixel (a pixel that presents any of these effects) in any of a set of overlapping images whereas ALLMASK denotes a source that touches a bad pixel in all of a set of overlapping images.
+Some of the effects that compromises the pixels and the model fitting itself includes bad pixels, saturation, cosmic rays, bleed trails, transients, etc. The NOAO DECam CP identifies these instrumental effects during their various calibrations\footnote{The document that lists all the calibrations and has details on the various maska can be found at: \url{https://www.noao.edu/noao/staff/fvaldes/CPDocPrelim/PL201\_3.html}} (see Table $5$ in \cite{2019AJ....157..168D} for the various calibratioons) and these are passed through \TRACTOR and compiled in the \ALLMASK bitmask\footnote{Details of this bitmask can be found here: http://legacysurvey.org/\DReight/bitmasks/\#id3}. \ALLMASK denotes a source that touches a bad pixel in all of a set of overlapping images.
+%ANYMASK denotes a source that touches a bad pixel (a pixel that presents any of these effects) in any of a set of overlapping images
 \mike{Do we use/need to discuss ANY?}
+\omar{You're right, we don't use ANY. I've remove it.}
 
-Besides the bad pixels due instrumental defects, \BGS require a complete sample in the three bands ($g, r, z$) and therefore we impose at least one observation in each of the bands \warn{, information we can get from}{the \NOBS parameter}. Both, ALLMASK and \NOBS are pixel-based and hence these information is also available in the RANDOMS. However, we find out that virtually all the area ($~97\%$) (and hence randoms) rejected by ALLMASK is also rejected by the \NOBS$=0$ (in any band). In addition ALLMASK rejects significant number of objects ($196$ deg$^{-2}$) but with very little associated area ($~0.01\%$ of the full area). Virtually all the objects ALLMASK rejects and many more are rejected by the quality cuts in \FRACMASK, \FRACIN and \FRACFLUX (in any band) that we are already applying and we will review in section \ref{sec:photo_select}. 
+Besides the bad pixels due instrumental defects, \BGS require a complete sample in the three bands ($g, r, z$) and therefore we impose at least one observation in each of the bands the \NOBS parameter. Both, ALLMASK and \NOBS are pixel-based and hence these information is also available in the RANDOMS. However, we find out that virtually all the area ($~97\%$) (and hence randoms) rejected by ALLMASK is also rejected by the \NOBS$=0$ (in any band). In addition ALLMASK rejects significant number of objects ($196$ deg$^{-2}$) but with very little associated area ($~0.01\%$ of the full area). Virtually all the objects ALLMASK rejects and many more are rejected by the quality cuts in \FRACMASK, \FRACIN and \FRACFLUX (in any band) that we are already applying and we will review in section \ref{sec:photo_select}. 
 
-In conclusion, there is little to be gained from using ALLMASK and we decided to use only \NOBS as our pixel-base mask shrinking the area by $0.11 \%$ and reducing the target density by a $1.53$ deg$^{-2}$ for bright objects and $0.46$ deg$^{-2}$ for faint objects.
+In conclusion, there is little to be gained from using ALLMASK and we decided to use only \NOBS as our pixel-base mask shrinking the area by $0.13 \%$ and reducing the target density by a $0.03$ deg$^{-2}$ for bright objects and $0.01$ deg$^{-2}$ for faint objects.
 
 \section{Photometric Selection}\label{sec:photo_select}
 
