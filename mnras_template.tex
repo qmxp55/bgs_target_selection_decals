@@ -331,8 +331,8 @@ The bright star mask is based on a combination of stars from \GAIA DR2 \citep{20
 \label{eq:mag_radii_bs}
   R_{\rm BS}(m) =
 \begin{cases}
-  39.3 \times 2.5^{(11 - m)/3}\, {\rm arcsec}, \hspace{0.6cm} m > 2.9 \\
-   471.6 {\rm arcsec}, \hspace{3cm} m < 2.9
+  39.3 \times 2.5^{(11 - m)/3} \, {\rm arcsec}, \hspace{0.6cm} m > 2.9 \\
+   471.6 \, {\rm arcsec}, \hspace{3cm} m < 2.9
 \end{cases}
 \end{equation}
 \mike{Is the 471~arcsec limit implemented in \DESI, or is this your implementation?  I didn't see it in \TRACTOR.}
@@ -354,8 +354,8 @@ fluxes underestimated. Consequently to define a clean galaxy catalogue we must v
 %%%%%%%%%%%%%%
 \begin{figure*}
 	\includegraphics[width=16cm]{images/2dstack_reescaled_bs_south_nobsmask}
-	\includegraphics[width=16cm]{images/2dstack_reescaled_ms_south_withbsmask.png}
-    \caption{Top panel: 2D stacks of \BGS objects around \BS sources composed of \GAIA and \Tycho sources down to $G$-mag and visual magnitude \textsc{mag}\_\textsc{vt} of $13$ respectively. From the \BGS side, we have not set the \BS bit on to account for the amount of contamination. The stacking was broken into magnitudes in the \BS sources catalogue from $8$ to $12$ (left) and $12$ to $13$ (right). The stacking was rescaled to the masking radius function of equation \ref{eq:mag_radii_bs}, meaning that objects within $0$ and $1$ will be mask out by the \BS bit while objects with $r/R_{\rm BS} > 1$ will survive the \BS bit. The colour distribution shows the density ratio of the density per pixel ($\eta_{pix}$) and the total density ($\eta_{tot}$) within the shell $1.1 < r/R_{\rm BS} < 3$. The density ratio is shown on a $\log_2$ scale where red shows the over-densities, blue the under-densities and white the mean density. The black solid circle shows the \BS bit threshold and the red solid line is the over-densities radial profile with same scale as the as the colour distribution $\log_2(\eta_i/\eta_{tot})$ where $\eta_i = \sum \eta_{pix}(\Delta R)/N_{pix}(\Delta R)$, $N_{pix}(\Delta R)$ is the number of pixels within the annulus $\Delta R$ and $R$ being the stacking scaled axis $r/R_{\rm BS}$. Bottom panel: 2D stacks of final \BGS sample (with \BS bit set on) and the so called \MS bit which contains the \BS bit and fainter \GAIA sources down to $G$-mag $16$. Here we show the stacking for magnitudes in the \MS bit source catalogue from $13$ to $14$ (left), $14$ to $15$ (middle) and $15$ to $16$ (right).}
+	%\includegraphics[width=16cm]{images/2dstack_reescaled_ms_south_withbsmask.png}
+    \caption{2D stacks of \BGS objects around \BS sources composed of \GAIA and \Tycho sources down to $G$-mag and visual magnitude \textsc{mag}\_\textsc{vt} of $13$ respectively. From the \BGS side, we have not set the \BS bit to account for the amount of contamination. The stacking was broken into magnitudes in the \BS sources catalogue from $8$ to $12$ (left) and $12$ to $13$ (right). The stacking was rescaled to the masking radius function of equation \ref{eq:mag_radii_bs}, meaning that objects within $0$ and $1$ will be mask out by the \BS bit while objects with $r/R_{\rm BS} > 1$ will survive the \BS bit (here $r^2 = \Delta RA^2 + \Delta DEC^2$). The colour distribution shows the density ratio of the density per pixel ($\eta_{pix}$) and the total density ($\eta_{tot}$) within the shell $1.1 < r/R_{\rm BS} < 3$. The density ratio is shown on a $\log_2$ scale where red shows the over-densities, blue the under-densities and white the mean density. The black solid circle shows the \BS bit threshold and the red solid line is the over-densities radial profile with same scale as the as the colour distribution $\log_2(\eta_i/\eta_{tot})$ where $\eta_i = \sum \eta_{pix}(\Delta R)/N_{pix}(\Delta R)$, $N_{pix}(\Delta R)$ is the number of pixels within the annulus $\Delta R$ and $R$ being the stacking scaled axis $r/R_{\rm BS}$. Bottom panel: 2D stacks of final \BGS sample (with \BS bit set on) and the so called \MS bit which contains the \BS bit and fainter \GAIA sources down to $G$-mag $16$. Here we show the stacking for magnitudes in the \MS bit source catalogue from $13$ to $14$ (left), $14$ to $15$ (middle) and $15$ to $16$ (right).}
     \label{fig:2dstack_tycho_reescaled}
 \end{figure*}
 
@@ -392,7 +392,7 @@ Some of the effects that compromises the pixels and the model fitting itself inc
 \mike{Do we use/need to discuss ANY?}
 \omar{You're right, we don't use ANY. I've remove it.}
 
-Besides the bad pixels due instrumental defects, \BGS require a complete sample in the three bands ($g, r, z$) and therefore we impose at least one observation in each of the bands the \NOBS parameter. Both, ALLMASK and \NOBS are pixel-based and hence these information is also available in the RANDOMS. However, we find out that virtually all the area ($~97\%$) (and hence randoms) rejected by ALLMASK is also rejected by the \NOBS$=0$ (in any band). In addition ALLMASK rejects significant number of objects ($196$ deg$^{-2}$) but with very little associated area ($~0.01\%$ of the full area). Virtually all the objects ALLMASK rejects and many more are rejected by the quality cuts in \FRACMASK, \FRACIN and \FRACFLUX (in any band) that we are already applying and we will review in section \ref{sec:photo_select}. 
+Besides the bad pixels due instrumental defects, \BGS require a complete sample in the three bands ($g, r, z$) and therefore we impose at least one observation in each of the bands the \NOBS parameter. Both, \ALLMASK and \NOBS are pixel-based and hence these information is also available in the RANDOMS. However, we find out that virtually all the area ($~97\%$) (and hence randoms) rejected by \ALLMASK is also rejected by the \NOBS$=0$ (in any band). In addition \ALLMASK rejects significant number of objects ($196$ deg$^{-2}$) but with very little associated area ($~0.01\%$ of the full area). Virtually all the objects \ALLMASK rejects and many more are rejected by the quality cuts in \FRACMASK, \FRACIN and \FRACFLUX (in any band) that we are already applying and we will review in section \ref{sec:photo_select}. 
 
 In conclusion, there is little to be gained from using ALLMASK and we decided to use only \NOBS as our pixel-base mask shrinking the area by $0.13 \%$ and reducing the target density by a $0.03$ deg$^{-2}$ for bright objects and $0.01$ deg$^{-2}$ for faint objects.
 
@@ -412,19 +412,23 @@ One of the major challenges for \BGS is the separation of stars and galaxies. In
 \DESI \BGS has minimal risks regarding redshift success rates compared to other targets in \DESI.  
 \mike{This may prove to be optimistic!}
 
-However, a possible risk according to survey simulations suggest a lack of star forming objects at a fixed observing condition (add cite...). Another possible source of incompleteness is low surface brightness objects, which become more difficult to observe under bright time conditions (add cite...). We try to minimize this problem by imposing a cut in FIBERFLUX in the $r$-band.
+\TRACTOR incorporate a simulated fibre flux in the three bands ($g,r$ and $z$) computed using the model data at $1$ arcsec Gaussian seeing. We use this parameter in the $r$-band to bail out spurious galaxies motivated by eye inspections. 
+ 
+%However, a possible risk according to survey simulations suggest a lack of star forming objects at a fixed observing condition (add cite...). Another possible source of incompleteness is low surface brightness objects, which become more difficult to observe under bright time conditions (add cite...). We try to minimize this problem by imposing a cut in FIBERFLUX in the $r$-band.
 
-Posterior photometric-based cuts includes \warn{weird}{} colour outliers in $g-r$ and $r-z$ and some quality cuts that relies on the low accuracy in its flux measurement. Such quality cuts are based on \FRACMASK, \FRACFLUX and \FRACIN \TRACTOR outputs in any of the three bands.
+Posterior photometric-based cuts includes colour outliers in $g-r$ and $r-z$ and some quality cuts that relies on the low accuracy in its flux measurement. Such quality cuts are based on \FRACMASK, \FRACFLUX and \FRACIN \TRACTOR outputs in any of the three bands.
 
 \begin{figure*}
-	\includegraphics[width=17cm]{images/gz_Grr_bgsbutsg_hexbin}
-	\includegraphics[width=17cm]{images/r_rfibmag_bgsbutfmc_hexbin}
-	\includegraphics[width=17cm]{images/gr_rz_bgs_hexbin}
-    \caption{Colour-colour plot $G-rr$ and $g-z$ of stars and galaxies according to the \GAIA classification after the Geometric and Pixel cuts of the spatial-based cuts (see  figure \ref{fig:flow1}) and after the photometric-based cuts (see figure \ref{fig:flow2}) except from the Star-galaxy separation cut itself. $G$ is the \GAIA $G$-band photometric magnitude from the \GAIA DR2 catalogue and $rr$ is the $r$-band magnitude from the LS \DReight without extinction correction. $g$ and $z$ are the $g$-band and $z$-band magnitudes from the LS \DReight catalogues with extinction corrections respectively. The plots shows cross-matched LS \DReight objects with \GAIA DR2 only and was divided in two morphology classes from \TRACTOR best-fitting model: whether the object is a PSF type (red dots) or not (blue dots). The black-dashed line draws the threshold limit at $G-rr = 0.6$ for stars and galaxies. Solid blue and red lines are the logarithmic distributions of the two morphology classes.}
-    \mike{Label legend with \TRACTOR PSF?}
+	\includegraphics[width=19cm]{images/gz_Grr_bgsbutsg_hexbin}
+	%\includegraphics[width=17cm]{images/r_rfibmag_bgsbutfmc_hexbin}
+	%\includegraphics[width=17cm]{images/gr_rz_bgs_hexbin}
+    \caption{Colour-colour plot $g-z$ and $G-rr$ of stars and galaxies according to the \GAIA classification after the Geometric and Pixel cuts of the spatial-based cuts (see  figure \ref{fig:flow1}) and after the photometric-based cuts (see figure \ref{fig:flow2}) except from the Star-galaxy separation cut itself. $G$ is the \GAIA $G$-band photometric magnitude from the \GAIA DR2 catalogue and $rr$ is the $r$-band magnitude from the LS \DReight without extinction correction. $g$ and $z$ are the $g$-band and $z$-band magnitudes from the LS \DReight catalogues with extinction corrections both. The plots shows cross-matched LS \DReight objects with \GAIA DR2 only and was broken in the five morphology classes from \TRACTOR best-fitting model. The red-dashed line draws the threshold limit at $G-rr = 0.6$ for stars and galaxies ($G-rr < 0.6$ for stars and $G-rr > 0.6$ for galaxies). The colour in the plots show the number counts ranging from $1$ to $5000$ objects except for thr PSF-type objects which goes from $1$ to $2$ Millions. We have included the fraction of galaxies and stars according to this classification at the top-left corner and bottom-left corner respectively. The total amount of objects within each plot and the target density is at top-right corner.}
+
     \mike{Don't you need to distinguish the objects enforced to be \TRACTOR PSF by the \GAIA AEN criteria?  Otherwise, it's a bit misleading.}
     \mike{It's not obvious to me why it's more correct to not account for extinction in $Grr$?}
     \mike{I think it's the case that:  you believe a colour cut is better than AEN and that you'd rather use colours than depend on \TRACTOR PSF (due to the seeing dependence?) but I don't see an argument along these lines being made in the text?}
+    
+\omar{I've modified the text and hope it's clearer now.}
     \label{fig:Grr-gz}
 \end{figure*}
 
@@ -432,9 +436,12 @@ In figure \ref{fig:flow2}  we show the second part of the \BGS target selection 
 
 \subsection{Star-Galaxy Separation}\label{subsec:star_galaxy}
 
-Many efforts have been made in star-galaxy classification since the beginning of the \warn{surveyism}{multi-object spectroscopy} era, these include algorithms using machine learning methods i.e., Neural Network algorithm (cite NN examples), Support Vector Machine (SVM) (cite SVM examples) and Random Forests (cite RF examples), algoritms using pixel-level flux measurements i.e., Normalised Linear Discriminant (cite example), and template fitting i.e., Template fitting of spectral energy distribution (cite example). However, rather than look at the morphology given by \TRACTOR to select stars and galaxies we \warn{based}{divided} our classification using \GAIA DR2 \warn{objects}{detections}. 
+Many efforts have been made in star-galaxy classification since the beginning of the multi-object spectroscopy era, these include algorithms using machine learning methods i.e., Neural Network algorithm (cite NN examples), Support Vector Machine (SVM) (cite SVM examples) and Random Forests (cite RF examples), algorithms using pixel-level flux measurements i.e., Normalised Linear Discriminant (cite example), and template fitting i.e., Template fitting of spectral energy distribution (cite example). However, rather than look at the morphology given by \TRACTOR to select stars and galaxies we divided our classification using \GAIA DR2 detections. 
 
-\GAIA \citep{2016A&A...595A...1G}, as mentioned in section \ref{subsec:gaia}, is a space-base survey aim to \warn{get}{make} a three-dimensional map of our Galaxy, the Milky Way. \GAIA has observed $~1.7$ billion stars in \warn{his}{the} second data release (DR2)\footnote{DR2 cover 22 months of observations and was release on 25 April 2018.} with a limiting magnitude of $20.7$ in the $G_{\rm{GAIA}}$-band. \GAIA, as \warn{being}{} a space-base survey does not have to deal with ground-based \warn{surveys} systematics like \warn{the}{} seeing, \warn{that}{which} affects considerably the measurement of the \warn{objects and increase the uncertainty}{} in the PSF, fluxes and morphology.  \GAIA data processing includes self-calibrating that allows calibration in the PSF model \citep{2016A&A...595A...1G}. Systematic astrometric errors (averaged over the sky) in \GAIA are at the level of $<0.1$ mas while astrometric residuals in the LS \DReight are of the order of $\pm 0.03$ arcsec. \GAIA DR2 is widely used in the LS \DReight for astrometry calibrations and masking. \GAIA has been made available\footnote{What is the distance used to match \GAIA with \TRACTOR.} in the LS catalogues since the LS DR7.
+\GAIA \citep{2016A&A...595A...1G}, as mentioned in section \ref{subsec:gaia}, is a space-base survey aim to make a three-dimensional map of our Galaxy, the Milky Way. \GAIA has observed $~1.7$ billion stars in the second data release (DR2)\footnote{DR2 cover 22 months of observations and was release on 25 April 2018.} with a limiting magnitude of $20.7$ in the $G_{\rm{GAIA}}$-band. \GAIA, as a space-base survey does not have to deal with ground-based systematics like seeing, which affects considerably the measurements in the PSF, fluxes and morphology. \GAIA data processing includes self-calibrating that allows calibration in the PSF model \citep{2016A&A...595A...1G}. Systematic astrometric errors (averaged over the sky) in \GAIA are at the level of $<0.1$ mas while astrometric residuals in the LS \DReight are of the order of $\pm 0.03$ arcsec. \GAIA DR2 is widely used in the LS \DReight for astrometry calibrations and masking. \GAIA has been made available in the LS catalogues since the LS DR7.
+
+\omar{do we need to include information regarding the matching between \GAIA and \TRACTOR i.e., the matching distance, epoch corrections, etc.?}
+
 \begin{figure}
 	\includegraphics[width=\columnwidth]{images/r_rfibmag}
     \caption{Plot of $r$-band total magnitude versus $r$-band fibre magnitude from the LS \DReight. Dots are Galaxies according to the \GAIA star-galaxy separation that has been passed through all the \BGS (spatial and photometric) cuts except from the Fibre Magnitude Cut (FMC) itself. Colours show whether a galaxy is a PSF best-fitted (red dots) or not (blue dots). The black-dashed line shows the FMC proposed for \BGS to filter out the low surface brightness galaxies. Blue-solid line is the distribution of the extended best-fitting model galaxies while red-solid line is the distribution for the PSF best-fitting galaxies whose represent a small number of galaxies.}
@@ -442,23 +449,30 @@ Many efforts have been made in star-galaxy classification since the beginning of
     \mike{I would colour by \TRACTOR morphology rather than just PSF against non-PSF?}
 \end{figure}
 
-\GAIA main task is to select stars but yet some galaxies pass throughout the selection algorithm (cite https://www.aanda.org/articles/aa/pdf/2014/08/aa23514-14.pdf) although the number of galaxies spotted by \GAIA remains small. Using \GAIA DR2 as truth table for stars, we based or galaxy classification in two parts,
+\GAIA main task is to select stars but yet some galaxies pass throughout the selection algorithm (cite https://www.aanda.org/articles/aa/pdf/2014/08/aa23514-14.pdf) although the number of galaxies spotted by \GAIA remains small. \omar{check fraction of galaxies in \GAIA from above paper if any.} Using \GAIA DR2 as truth table for stars, we based or galaxy classification in two parts,
 
 \begin{itemize}
     \item $G-rr > 0.6$.
     \item Objects not in \GAIA.
 \end{itemize}
 
-The $G$-band is the G photometric \GAIA magnitude and $rr$ is the $r$-band magnitude from the LS \DReight without extinction correction. Thus $G-rr$ separate the redder objects in \GAIA above zero. In figure \ref{fig:Grr-gz} we show a $G-rr$ versus $g-z$ colour plot of \GAIA only objects matched in LS \DReight. From plot, we can see the stellar locus around $G-rr=0$ and part of the galaxy locus in the upper part of the plot, just above $G-rr=0$. The colours in \ref{fig:Grr-gz} represent \TRACTOR morphology, red dots are objects fitted by PSF and blue dots are objects not fitted by PSF, hence \TRACTOR morphology support the \GAIA classification. Using these \TRACTOR morphology and \GAIA $G$-band information we define our star-galaxy separation at the threshold limit of $0.6$ in $G-rr$. 
+The $G$-band is the G photometric \GAIA magnitude and $rr$ is the $r$-band magnitude from the LS \DReight without extinction correction. The election of taking the difference $G-rr$ is driven by the fact that $G$-band in \GAIA is centred at the relatively same position as the $r$-band in the \LS with the only difference than the $G$-band is much broader than the $r$-band. We decided not to account for extinction correction in the $r$-band because we do not need to worry about dust for such close objects. Thus $G-rr$ separate the redder objects in \GAIA above zero. In figure \ref{fig:Grr-gz} we show a $g-z$ versus $G-rr$ colour plot of \GAIA only objects matched in LS \DReight and broken into the five morphology types \TRACTOR uses in their model fit. The cross-matched objects include all the \BGS cuts (i.e., Spatial and Photometric) with the eception of the Star-galaxy separation itself. From PSF-type objects, we can see the stellar locus around $G-rr=0$, while for the remain morphology types (COMP, DEV, EXP, REX) we see part of the galaxy locus\footnote{We have to remember that Fig.~\ref{fig:Grr-gz} only includes cross-matched stars and galaxies between \LS \DReight and \GAIA.} in the upper part of the plot, just above $G-rr=0$. 
 
-For future reference we will refer to this star-galaxy classificaton using \GAIA as {\it \GAIA Galaxies} for galaxies and {\it \GAIA Stars} for Stars. The amount of \GAIA galaxies that are in \GAIA (objects above $0.6$ in $G-rr$ of figure \ref{fig:Grr-gz}) is $xx \%$ which is quite low compare to the amount of \GAIA galaxies that are not in \GAIA which is $xx \%$. 
+It is clear from Fig.~\ref{fig:Grr-gz} that \TRACTOR morphology support the \GAIA classification but still we can see some remnants of the stellar locus for the non-PSF model-fitted objects. The agreement accounts for $99.93 \%$ for PSF-type objects and less than $3.1 \%$ disagreement for non-PSF type morphologies with the exception of the exponential (EXP) model-fit with the highest disagreement of $\sim 30 \%$. Using the \TRACTOR morphology and \GAIA $G$-band information we define our star-galaxy separation at the threshold limit of $0.6$ in $G-rr$. 
 
-\BGS target selection is taking the expected shape after star-galaxy separation. From Spatial flow chart in figure \ref{fig:flow2}, we end up having a bright target density of $867.42$ deg$^{-2}$ and a faint target density of $603.55$ deg$^{-2}$. Meanwhile, rejected \GAIA stars have a target density of $1795.02$ deg$^{-2}$ bright stars and $8.24$ deg$^{-2}$ faint stars.
+For future references we will refer to stars and galaxies to objects in the \LS \DReight that meet our \GAIA classification. 
 
-Include information of agreement and disagreements between classifications (\GAIA, \TRACTOR). Add Venn diagrams or the heatmaps.
+The fraction of galaxies that are in \GAIA (objects above $0.6$ in $G-rr$ of figure ~\ref{fig:Grr-gz}) is $xx \%$ which is quite low compared to the total amount of galaxies.
+\omar{Compute the fraction of galaxies cross-matched with gaia out of the total of galaxies}
+
+\BGS target selection is taking the expected density after star-galaxy separation. From Spatial flow chart in figure \ref{fig:flow2}, we end up having a bright target density of $850.06$ deg$^{-2}$ and a faint target density of $598.11$ deg$^{-2}$. Meanwhile, rejected \GAIA stars have a target density of $2808.65$ deg$^{-2}$ bright stars and $623.79$ deg$^{-2}$ faint stars.
+
+In Appendix~\ref{app:sgmodels} we compare the \GAIA star-galaxy classification with stars being selected by \TRACTOR PSF model type and with \TRACTOR current star-galaxy separation for \GAIA cross-matches using the \GAIA Astrometric Excess Noise.
 
 \subsection{Fibre Magnitude Cut}
 \mike{Is this implemented in DESI target?}
+\omar{Yes. \url{https://github.com/desihub/desitarget/blob/master/py/desitarget/cuts.py\#L1090-L1092}}
+
 In order to reduce the number of low signal to noise and hence low redshift success rate target density, a surface brightness (SB) limit has been applied to the \BGS selection. The SB limit is given by the predicted Fibre Flux (refer to \TRACTOR paper, or any docummentation, where this FIBRE flux is defined...) and the total flux both in the $r$-band. The SB cut was defined as follows:
 
 \begin{eqnarray}\label{eq:fmc}
@@ -559,6 +573,9 @@ Try to keep it short.
     \caption{Flow chart...}
     \label{fig:flow_galaxy}
 \end{figure*}
+
+
+\section{Comparisons between star-galaxy classification models}\label{app:sgmodels}
 
 \iffalse
 \section{Some extra material}
