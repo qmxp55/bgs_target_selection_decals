@@ -76,6 +76,7 @@
 \newcommand{\BTS}{\textsc{bts}\xspace}
 \newcommand{\BS}{\textsc{bs}\xspace}
 \newcommand{\CCD}{\textsc{ccd}\xspace}
+\newcommand{\CC}{\textsc{cc}\xspace}
 \newcommand{\CCDs}{\textsc{ccd}s\xspace}
 \newcommand{\CORRFLUX}{{\textsc{flux/mw\_transmission}}\xspace}
 \newcommand{\CP}{\textsc{cp}\xspace}
@@ -92,14 +93,17 @@
 \newcommand{\EBV}{\textsc{ebv}\xspace}
 \newcommand{\FIBERFLUX}{{\textsc{fiberflux}}\xspace}
 \newcommand{\FLUX}{{\textsc{flux}}\xspace}
+\newcommand{\FLUXIVAR}{{\textsc{ flux\_ivar}}\xspace}
+\newcommand{\FMC}{{\textsc{fmc}}\xspace}
 \newcommand{\FRACMASKED}{{\textsc{fracmasked}}\xspace}
-\newcommand{\FRACMASK}{{\textsc{fracmasked}}\xspace}
+%\newcommand{\FRACMASK}{{\textsc{fracmasked}}\xspace}
 \newcommand{\FRACFLUX}{{\textsc{fracflux}}\xspace}
 \newcommand{\FRACIN}{{\textsc{fracin}}\xspace}
 \newcommand{\GAMA}{\textsc{gama}\xspace}
 \newcommand{\Gfifteen}{\textsc{g15}\xspace}
 \newcommand{\Gtwelve}{\textsc{g12}\xspace}
 \newcommand{\GAIA}{\textsc{gaia}\xspace}
+\newcommand{\GC}{\textsc{gc}\xspace}
 \newcommand{\IPAC}{\textsc{ipac}\xspace}
 \newcommand{\LBNL}{\textsc{lbnl}\xspace}
 \newcommand{\LRG}{\textsc{lrg}\xspace}
@@ -120,11 +124,14 @@
 \newcommand{\NOBSG}{\textsc{nobs\_g}\xspace}
 \newcommand{\NOBSR}{\textsc{nobs\_r}\xspace}
 \newcommand{\NOBSZ}{\textsc{nobs\_z}\xspace}
+\newcommand{\NQ}{\textsc{nq}\xspace}
 \newcommand{\PSF}{\textsc{psf}\xspace}
 \newcommand{\PSFs}{\textsc{psf}s\xspace}
 \newcommand{\QSO}{\textsc{qso}\xspace}
 \newcommand{\QSOs}{\textsc{qso}s\xspace}
+\newcommand{\QCs}{\textsc{qc}s\xspace}
 \newcommand{\RSD}{\textsc{rsd}\xspace}
+\newcommand{\RPETRO}{{\textsc{ r\_petro}}\xspace}
 \newcommand{\SDSS}{\textsc{sdss}\xspace}
 \newcommand{\SGC}{\textsc{sgc}\xspace}
 \newcommand{\TRACTOR}{\textsc{T}ractor\xspace}
@@ -175,7 +182,7 @@ $^{3}$Another Department, Different Institution, Street Address, City Postal Cod
 
 % Abstract of the paper
 \begin{abstract}
-This project focuses on the steps taken to produce a reliable and complete input galaxy catalogue for the \DESI Bright Galaxy Sample (\BGS) using the Legacy Survey \DReight \DECam data. We analyze some of the main problems faced by the \DESI \BGS target selection (e.g. contamination by stars and fragmented bright galaxies, star-galaxy separation, low surface brightness) by defining a new way to select \BGS galaxies using \GAIA photometry and by implementing geometrical and photometric masks that reduce the number of spurious objects. The resulting catalogue is cross-matched with two of the \GAMA fields to assess the redshift success rate, and with mock catalogues and \SDSS data to validate the galaxy clustering of our selection. Validation of the \BGS selection criteria is also assessed looking at the correlations of the density galaxy field with the imaging systematics, achieving high accuracy completeness with deviations down to $7\%$.
+This project focuses on the steps taken to produce a reliable and complete input galaxy catalogue for the \DESI Bright Galaxy Sample (\BGS) using the Legacy Survey \DReight \DECam data. We analyze some of the main problems faced by the \DESI \BGS target selection (e.g. contamination by stars and fragmented bright galaxies, star-galaxy separation, low surface brightness) by defining a new way to select \BGS galaxies using \GAIA photometry and by implementing geometrical and photometric masks that reduce the number of spurious objects. The resulting catalogue is cross-matched with three of the \GAMA fields to assess the redshift success rate, and with mock catalogues and \SDSS data to validate the galaxy clustering of our selection. Validation of the \BGS selection criteria is also assessed looking at the correlations of the density galaxy field with the imaging systematics, achieving high accuracy completeness with deviations down to $7\%$.
 \end{abstract}
 
 % Select between one and six entries from the list of approved keywords.
@@ -202,9 +209,8 @@ In total, more than 30 million galaxy and quasar redshifts will be obtained to m
 
 The galaxy sample for the \BGS is intended to be a flux-limited, $r$-band selected sample of galaxies. The magnitude limit is determined by the total amount of observing bright time and the exposure times required to achieve the desired redshift efficiency. This target selection is, in essence, a deeper version of the galaxy target selection for the \SDSS main galaxy sample \cite[\MGS,][]{2002AJ....124.1810S}. We can make quite accurate 
 predictions of 
-the expected properties of the \BGS target sample by making use of the mock catalogues created from numerical simulations \citep{Smith:2017tzz}. These mocks have identical properties to the \MGS at low redshift, including the luminosity function,
-colour distribution, and clustering properties. 
-\shaun{and their evolution is constrained by measurements from the \GAMA survey.}
+the expected properties of the \BGS target sample by making use of the mock catalogues created from numerical simulations (i.e., the MXXL light-cone catalogue \citep{Smith:2017tzz}). These mocks have identical properties to the \MGS at low redshift, including the luminosity function,
+colour distribution, clustering properties and their evolution is constrained by measurements from the \GAMA survey.
 
 \DESI \BGS expect to have a density of just over $800$ galaxies per $\textrm{deg}^2$ in a primary sample defined by a faint $r$-band magnitude limit of $19.5$ and further $\sim 600$~$\textrm{deg}^2$ in a secondary sample defined by the magnitude range $19.5 < r < 20$. For future references we will refer to the brighter and fainter \BGS sets as \BGSB and \BGSF respectively. A few percent of galaxies in \DESI \BGS will be lost due to deblending errors, superposition with bright stars, and other artifacts that typically affect imaging catalogues. The aim of this work is to provide a reliable input bright galaxy catalogue for \DESI. 
 
@@ -392,9 +398,9 @@ Some of the effects that compromises the pixels and the model fitting itself inc
 \mike{Do we use/need to discuss ANY?}
 \omar{You're right, we don't use ANY. I've remove it.}
 
-Besides the bad pixels due instrumental defects, \BGS require a complete sample in the three bands ($g, r, z$) and therefore we impose at least one observation in each of the bands the \NOBS parameter. Both, \ALLMASK and \NOBS are pixel-based and hence these information is also available in the RANDOMS. However, we find out that virtually all the area ($~97\%$) (and hence randoms) rejected by \ALLMASK is also rejected by the \NOBS$=0$ (in any band). In addition \ALLMASK rejects significant number of objects ($196$ deg$^{-2}$) but with very little associated area ($~0.01\%$ of the full area). Virtually all the objects \ALLMASK rejects and many more are rejected by the quality cuts in \FRACMASK, \FRACIN and \FRACFLUX (in any band) that we are already applying and we will review in section \ref{sec:photo_select}. 
+Besides the bad pixels due instrumental defects, \BGS require a complete sample in the three bands ($g, r, z$) and therefore we impose at least one observation in each of the bands the \NOBS parameter. Both, \ALLMASK and \NOBS are pixel-based and hence these information is also available in the RANDOMS. However, we find out that virtually all the area ($~97\%$) (and hence randoms) rejected by \ALLMASK is also rejected by the \NOBS$=0$ (in any band). In addition \ALLMASK rejects significant number of objects ($196$ deg$^{-2}$) but with very little associated area ($~0.01\%$ of the full area). Virtually all the objects \ALLMASK rejects and many more are rejected by the quality cuts in \FRACMASKED, \FRACIN and \FRACFLUX (in any band) that we are already applying and we will review in section \ref{sec:photo_select}. 
 
-In conclusion, there is little to be gained from using ALLMASK and we decided to use only \NOBS as our pixel-base mask shrinking the area by $0.13 \%$ and reducing the target density by a $0.03$ deg$^{-2}$ for bright objects and $0.01$ deg$^{-2}$ for faint objects.
+In conclusion, there is little to be gained from using \ALLMASK and we decided to use only \NOBS as our pixel-base mask shrinking the area by $0.13 \%$ and reducing the target density by a $0.03$ deg$^{-2}$ for bright objects and $0.01$ deg$^{-2}$ for faint objects.
 
 \section{Photometric Selection}\label{sec:photo_select}
 
@@ -403,7 +409,7 @@ The second class of \BGS targets comprehend the selection based on its photometr
 \begin{figure}
 	%\includegraphics[scale=0.4]{images/flow_phot}
 	\includegraphics[width=\columnwidth]{images/flow_phot.png}
-    \caption{Flow chart of \BGS target selection in the Legacy Survey \DReight based on photometric selections. The photometric selection of \BGS targets is divided in four kinds; Star-Galaxy separation, Fibre Magnitude Cuts (FMC), Colour Cuts (CC) and Quality Cuts (QC). The photometric-based flow chart is a continuation of the spatial-based flow chart (see figure \ref{fig:flow1}) and therefore we start with the area and densities where we left in the spatial-based flow chart. We break densities into bright and faint and shows the outputs after each of the \BGS cuts classes as blue. In red it is shown the densities of the removed objects and in yellow it is shown the different cut classes.}
+    \caption{Flow chart of \BGS target selection in the Legacy Survey \DReight based on photometric selections. The photometric selection of \BGS targets is divided in four kinds; Star-Galaxy separation, Fibre Magnitude Cuts (\FMC), Colour Cuts (\CC) and Quality Cuts (\QCs). The photometric-based flow chart is a continuation of the spatial-based flow chart (see figure \ref{fig:flow1}) and therefore we start with the area and densities where we left in the spatial-based flow chart. We break densities into bright and faint and shows the outputs after each of the \BGS cuts classes as blue. In red it is shown the densities of the removed objects and in yellow it is shown the different cut classes.}
     \label{fig:flow2}
 \end{figure}
 
@@ -416,7 +422,7 @@ One of the major challenges for \BGS is the separation of stars and galaxies. In
  
 %However, a possible risk according to survey simulations suggest a lack of star forming objects at a fixed observing condition (add cite...). Another possible source of incompleteness is low surface brightness objects, which become more difficult to observe under bright time conditions (add cite...). We try to minimize this problem by imposing a cut in FIBERFLUX in the $r$-band.
 
-Posterior photometric-based cuts includes colour outliers in $g-r$ and $r-z$ and some quality cuts that relies on the low accuracy in its flux measurement. Such quality cuts are based on \FRACMASK, \FRACFLUX and \FRACIN \TRACTOR outputs in any of the three bands.
+Posterior photometric-based cuts includes colour outliers in $g-r$ and $r-z$ and some quality cuts that relies on the low accuracy in its flux measurement. Such quality cuts are based on \FRACMASKED, \FRACFLUX and \FRACIN \TRACTOR outputs in any of the three bands.
 
 \begin{figure*}
 	\includegraphics[width=19cm]{images/gz_Grr_bgsbutsg_hexbin}
@@ -442,12 +448,11 @@ Many efforts have been made in star-galaxy classification since the beginning of
 
 \omar{do we need to include information regarding the matching between \GAIA and \TRACTOR i.e., the matching distance, epoch corrections, etc.?}
 
-\begin{figure}
-	\includegraphics[width=\columnwidth]{images/r_rfibmag}
-    \caption{Plot of $r$-band total magnitude versus $r$-band fibre magnitude from the LS \DReight. Dots are Galaxies according to the \GAIA star-galaxy separation that has been passed through all the \BGS (spatial and photometric) cuts except from the Fibre Magnitude Cut (FMC) itself. Colours show whether a galaxy is a PSF best-fitted (red dots) or not (blue dots). The black-dashed line shows the FMC proposed for \BGS to filter out the low surface brightness galaxies. Blue-solid line is the distribution of the extended best-fitting model galaxies while red-solid line is the distribution for the PSF best-fitting galaxies whose represent a small number of galaxies.}
+\begin{figure*}
+	\includegraphics[width=19cm]{images/r_rfibmag_bgsbutfmc_hexbin}
+    \caption{ \BGS galaxies in the $r$-band total magnitude versus $r$-band fibre magnitude from the LS \DReight. The results were divided into the five different \TRACTOR best-fit morphology model. The colour bar shows the number counts ranging from $1$ to $20,000$ for four of the best-fit models with the exception of the PSF-type galaxies that runs from $1$ to $2000$. The red-dashed line shows the \FMC cut where we reject everything that is above that threshold. Number on top-left and bottom-right corner are the fraction of galaxies rejected and kept respectively while numbers at top-right corner shows the total number of galaxies and its target density.}
     \label{fig:fmc}
-    \mike{I would colour by \TRACTOR morphology rather than just PSF against non-PSF?}
-\end{figure}
+\end{figure*}
 
 \GAIA main task is to select stars but yet some galaxies pass throughout the selection algorithm (cite https://www.aanda.org/articles/aa/pdf/2014/08/aa23514-14.pdf) although the number of galaxies spotted by \GAIA remains small. \omar{check fraction of galaxies in \GAIA from above paper if any.} Using \GAIA DR2 as truth table for stars, we based or galaxy classification in two parts,
 
@@ -473,44 +478,56 @@ In Appendix~\ref{app:sgmodels} we compare the \GAIA star-galaxy classification w
 \mike{Is this implemented in DESI target?}
 \omar{Yes. \url{https://github.com/desihub/desitarget/blob/master/py/desitarget/cuts.py\#L1090-L1092}}
 
-In order to reduce the number of low signal to noise and hence low redshift success rate target density, a surface brightness (SB) limit has been applied to the \BGS selection. The SB limit is given by the predicted Fibre Flux (refer to \TRACTOR paper, or any docummentation, where this FIBRE flux is defined...) and the total flux both in the $r$-band. The SB cut was defined as follows:
+In order to reduce the number of spurious galaxies caused by fragmented, shredded and imaging issues we apply a fibre limited cut defined as follows:
+
+%low signal to noise and hence low redshift success rate target density, a surface brightness (SB) limit has been applied to the \BGS selection. The SB limit is given by the predicted Fibre Flux (refer to \TRACTOR paper, or any docummentation, where this FIBRE flux is defined...) and the total flux both in the $r$-band. The SB cut was defined as follows:
 
 \begin{eqnarray}\label{eq:fmc}
-    &rfibmag < (2.9 + 1.2) + r  \hspace{3 mm} \hspace{3 mm} &rmag < 17.1, \nonumber \\
-    &rfibmag < 21.2 \hspace{3 mm} \hspace{3 mm} &17.1 < r < 18.3, \nonumber \\ 
-    &rfibmag < 2.9 + r \hspace{3 mm} \hspace{3 mm} &r > 18.3,
+    & [rfibmag < (2.9 + 1.2) + r  \hspace{3 mm} \text{AND} \hspace{1 mm} & rmag < 17.1 ] \nonumber \\
+    & \text{OR} \hspace{3 mm} [rfibmag < 21.2 \hspace{3 mm} \text{AND} \hspace{1 mm} &17.1 < r < 18.3] \nonumber \\ 
+    & \text{OR} \hspace{3 mm}  [rfibmag < 2.9 + r \hspace{3 mm} \text{AND} \hspace{1 mm} &r > 18.3]
 \end{eqnarray}
-where $rfibmag$ is the magnitude of the $r$-band fibre flux with extinction correction and $r$ is the total $r$-band magnitude. Equation (\ref{eq:fmc}) defines the {\it fibre magnitude cut} (FMC) and in figure \ref{fig:fmc} we show this cut in the black-dashed line for a $r$-band total magnitude versus $r$-band fibre magnitude plot. Colours show whether a galaxy is PSF fitted (red-dots) or not (blue-dots). The FMC was establish due eye inspection above the line $rfibmag > 2.9 + r$, below this line it is likely we have a high completeness in redshift success rate. At the bright end, for $r < 18.3$ it was found at least a $50 \%$ good objects and $~30 \%$ of Large Galaxies (from the LSLGA catalogue) above the $rfibmag > 2.9 + r$ line. 
 
-This FMC is not that agressive, rejecting $~28$ deg$^{-2}$ from previous cut (star-galaxy separation) of which $19.08$ eg$^{-2}$ are bright objects and $8.24$ eg$^{-2}$ are faint.
+where $rfibmag$ is the magnitude of the $r$-band fibre flux and $r$ is the total $r$-band magnitude both accounts for extinction correction. Equation~(\ref{eq:fmc}) defines the {\it fibre magnitude cut} (\FMC) and in figure~\ref{fig:fmc} we show this cut in the red-dashed line for \BGS galaxies in the $r$-band total magnitude versus $r$-band fibre magnitude plot broken into the five different \TRACTOR best-fit models. We kept everything below the red-dashed line affecting mostly galaxies with exponential (EXP) and round exponential (REX) best-fittings. 
+\omar{Explain why do we have such a star-like objects behaviour in PSF galaxies as shown in Fig.~\ref{fig:fmc}. What are those objects? Do they represent the forced PSF fit objects?}
+
+The \FMC was motivated by the huge amount of spurious galaxies found at high $rfibmag - r$ values that can be explained by a low surface brightness galaxies and a poor model fit. The threshold limit in equation~\ref{eq:fmc} was build based on eye inspection where we see at least $50 \%$ of good galaxies.
+
+%Colours show whether a galaxy is PSF fitted (red-dots) or not (blue-dots). The \FMC was establish due eye inspection above the line $rfibmag > 2.9 + r$, below this line it is likely we have a high completeness in redshift success rate. At the bright end, for $r < 18.3$ it was found at least a $50 \%$ good objects and $~30 \%$ of Large Galaxies (from the LSLGA catalogue) above the $rfibmag > 2.9 + r$ line.  
+
+This \FMC rejects an extra $36.33$ deg$^{-2}$ from previous cut (star-galaxy separation) of which $23.52$ deg$^{-2}$ are bright galaxies and $12.81$ deg$^{-2}$ are faint galaxies.
 
 \subsection{Colour Cuts}
 
-We also get rid of weird colours in galaxies. This are objects that falls far outside the galaxy locus in the $g-r$ versus $r-z$ colour-colour plot. The limits of these outliers are:
+We also get rid of weird colours in galaxies. This are objects that falls far outside the galaxy locus in the $g-r$ versus $r-z$ colour-colour regime. The limits we have defined for the outliers are:
 
 \begin{eqnarray}
-    -1 < g-r < 4 \nonumber \\
-    -1 < r-z < 4.
+    (-1 < g-r < 4) \nonumber \\
+    \text{AND} \hspace{3mm} (-1 < r-z < 4).
 \end{eqnarray}
 
-The colour cut (CC) s rejecting just $~4$ deg$^{-2}$ in addition to previous cut where most of them are faint objects.
+The colour cut (\CC) rejects an additional $9.84$ deg$^{-2}$ of which $5.07$ deg$^{-2}$ are bright galaxies and $4.77$ deg$^{-2}$ are faint.
 
 \subsection{Quality Cuts}
 
-In section \ref{subsec:pix_masking} we mention that bad pixels, associated to bitmask cut, happened to be a subset of our Quality Cuts (QC). The QC are conformed by,
+In section \ref{subsec:pix_masking} we mentioned that bad pixels, associated to bitmask cut, happened to be a subset of our Quality Cuts (\QCs). The \QCs are conformed by,
 
 \begin{eqnarray}
     &\textsc{fracmask\_i}& < 0.4, \nonumber \\
-    &\textsc{fracin\_i}& > 0.3, \nonumber \\
-    &\textsc{fracflux\_i}& < 5, \hspace{1cm} i \equiv  \textrm{G, R and Z.}
+    \text{AND} \hspace{3mm} &\textsc{fracin\_i}& > 0.3, \nonumber \\
+    \text{AND} \hspace{3mm} &\textsc{fracflux\_i}& < 5, \hspace{1cm} i \equiv  \textrm{G, R and Z}
 \end{eqnarray}
 
-\FRACMASK $< 0.4$ can be understood as objects with model not dominated by masked pixels where $0.4$ is the fraction of pixels masked and higher numbers indicate higher contamination. \FRACIN $> 0.3$ means that most of the model flux lies inside the region of the data used to fit the model. \FRACFLUX $< 5$ select objects not overwhelmed by neighbouring sources, this is, the flux from surrounded objects do not exceed five times the flux of the object itself.
+\FRACMASKED $< 0.4$ can be understood as objects with model not dominated by masked pixels where $0.4$ is the fraction of pixels masked and higher numbers indicate higher contamination. \FRACIN $> 0.3$ means that most of the model flux lies inside the region of the data used to fit the model. \FRACFLUX $< 5$ select objects not overwhelmed by neighbouring sources, this is, the flux from surrounded objects do not exceed five times the flux of the object itself.
 
-Despite the QC information can not be passed through the RANDOMS, we find this cut extremely important as it complements most of the previous cuts. fracmasked catched objects with low surface brightness that the FMC missed and also objects near bright sources and due fragmented bright objects. fracin also spot low SB objects as well as fracflux but fracflux also spot small regions of incompleteness in the three bands that could be due CCD gaps. We have decided to implement the QC at last so we can have a summary of how well main previous cuts did it. Turns out they did great as QC rejects an additional of $~9$ deg$^{2}$ of which $\sim 55 \%$ is due fracmasked, $\sim 44 \%$ is due fracflux and the rest $(\sim 1 \%)$ correspond to fracin.
+Despite the \QCs information can not be passed through the RANDOMS, we find this cut extremely important as it complements most of the previous cuts. \FRACMASKED catch galaxies with low surface brightness that the \FMC missed and also objects near bright sources and spurious due fragmented bright objects. \FRACIN also spot low surface brightness galaxies as well as \FRACFLUX but \FRACFLUX also spot small regions of incompleteness in the three bands that could be due CCD gaps. We have decided to implement the \QCs at last so we can have a summary of how well the previous cuts works. Turns out they works great as \QCs rejects an additional of $12.8$ deg$^{2}$ of which $\sim 50 \%$ is due \FRACMASKED, $\sim 40 \%$ is due \FRACFLUX and the rest $(\sim 10 \%)$ correspond to \FRACIN.
+
 \mike{I hope to come back to this, but it'd be nice to tidy up the fundamental origins of some of these.  E.g. there seems to be a large overlap with medium star masks?}
+\omar{I haven't compare the overlap with medium star mask. We have decided that there's no need to apply the medium star masking but I think is worth to check if there's any overlap with the \QCs first.}
 
-\subsection{Photometric Systematics}
+In  Appendix~\ref{app:galview} we change the order in which we implement the \BGS cuts putting at first place the star-galaxy separation which leave us with a galaxy view of the \BGS target selection. In addition to this change from the selection criteria order presented in this section, we swap the \FMC with the \QCs leading to a different view shown at flow chart in Fig.~\ref{fig:flow_galaxy}. 
+
+%\subsection{Photometric Systematics}
 
 \begin{figure*}
 	\includegraphics[width=17cm]{images/skymaps_bright_faint.png}
@@ -526,9 +543,40 @@ Despite the QC information can not be passed through the RANDOMS, we find this c
 
 \section{Catalogue Properties}
 %\subsection{North Vs South}
+As an initial assess of the \BGS target selection, we carried comparisons with the \GAMA Main Survey \citep{10.1093/mnras/stx3042} and with the MXXL light-cone catalogue \citep{Smith:2017tzz}. We compare the magnitude, target density and clustering properties. Using \GAMA redshifts, we asses our asses our star-galaxy classification and plot the cross-match redshift distribution. 
+
+\subsection{Magnitude definition with GAMA}
+
+We use the \GAMA DR3 Main Survey, which has a $98.85 \%$ redshift completeness, to match with our \BGS target catalogue. In terms of the footprint and quality of the \GAMA data, we choose three out of the four \GAMA fields: G09, G12, G15, ignoring G02 as this is only partially covered by \DECaLS footprint. \GAMA main survey is complete to r petrosian (\RPETRO) of $19.8$ and to get reliable redshifts, we select targets with \GAMA \NQ with a value of $3$ or more. The area of each \GAMA field is $59.98$ deg$^2$ meaning that our matched sample has a total area of $\sim 180$ deg$^2$.
+
+\begin{figure*}
+	\includegraphics[width=17cm]{images/bgs_gama_mag_diff}
+    \caption{ $r$ vs $r-\RPETRO$ for \BGS galaxies cross-matched with \GAMA. $r$ is the $r$-band magnitude from the LS \DReight and \RPETRO is the $r$-band petrosian magnitude from \GAMA DR3. Each plot correspond to one of the five \TRACTOR model fit. The red-dashed line is the median of $r-\RPETRO$ while the colour bar shows the number counts running from $1$ to $600$ for all plots except for the PSF-type galaxies plot that runs from $1$ to $3$. The top-left number shows the fraction of galaxies plotted out of the total \BGS galaxies matched with \GAMA.}
+    \label{fig:bgs_gama_magdiff}
+\end{figure*}
+
+In principle, we match \GAMA with the whole LS \DReight within the \GAMA footprint rather than match \GAMA with \BGS, allowing us to get more information of our \BGS catalogue. The matching distance we took is $1$ arcsec.
+
+In Fig.\ref{fig:bgs_gama_magdiff} we compare LS \DReight $r$ magnitude with \GAMA \RPETRO by plotting $r$ vs $r-\RPETRO$ for \BGS galaxies cross-matched with \GAMA. To see how this difference is affected by \TRACTOR model fits, we break them into the five \TRACTOR morphologies. The red-dashed line is the median of $r-\RPETRO$ showing the amount of offset between the catalogues. The colour bar shows the number counts, and the top-left number shows the fraction of galaxies plotted out of the total \BGS galaxies matched with \GAMA. The offset is relatively small for REX and EXP galaxies with less than $0.1$ difference, but for DEV galaxies the offset increase close to $0.2$. The COMP galaxies have an offset of $\sim 0.15$ but this has a tiny fraction of targets which leads to poor statistics. Opposite to the positive median values of the non-PSF galaxies, the PSF galaxies presents a positive median value. The overall median value is $-0.124$ meaning that \GAMA \RPETRO magnitude goes $\sim 0.1$ fainter than the $r$ magnitude from the \LS \DReight. 
+
+
+%\subsection{Number counts}
+\subsection{Validation of the Star-Galaxy separation in GAMA fields}
+
+
+
+\subsection{Redshift distribution from GAMA}
+\subsection{Angular correlation function}
+\subsection{Angular cross-correlation with stars}
+\subsection{Potential Systematics}
+
+
+
+\iffalse
 \subsection{Validating \BGS selection in \GAMA fields}
 mag-mag plots. N(z) for the matches. Validate the Star-galaxy separation.
-\mike{I have the \TRACTOR-\GAMA matched catalogues available for SV.}
+
+
 \subsection{\BGS Vs \SDSS classification}
 \begin{itemize}
     \item Magnitude comparisons with \SDSS
@@ -542,6 +590,7 @@ mag-mag plots. N(z) for the matches. Validate the Star-galaxy separation.
 \end{itemize}
 
 \mike{Survey validation selection?}
+\fi
 
 \section{Conclusions}
 
@@ -566,11 +615,17 @@ Try to keep it short.
 %%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
 
 \appendix
-\section{Galaxy view}
+\section{Galaxy view}\label{app:galview}
+
+We present a galaxy view of the \BGS selection criteria by implementing the star-galaxy separation on top of all the \BGS cuts. Results of this are shown in Fig.~\ref{fig:flow_galaxy}. In this view, the geometric masking does not look as aggressive as in Fig.~\ref{fig:flow1} reducing the amount of rejections by a factor of $\sim 6$ being the \BS bit the most affected meaning we have a high number of stars around the bright stars. Then we have \NOBS which seems unaffected by the star-galaxy separation cut. Note that the are removed by these cuts remains unchanged as this does not depend on the number of objects but the randoms.  
+
+In addition to the star-galaxy separation order change compared to the selection criteria presented at sections ~\ref{sec:spatial_masking} and ~\ref{sec:photo_select}, we swap the \FMC with the \QCs. When comparing both orders (Fig.~\ref{fig:flow2} and Fig.~\ref{fig:flow_galaxy}) we see a high overlap between the \QCs and the \FMC of the order of $\sim 18$ deg$^{-2}$ which represent half the galaxies rejected by \FMC in section~\ref{sec:photo_select}. The most overlapped galaxies are between \FRACFLUX and \FMC rejections. 
+
+\omar{elaborate on why such overlap between \FRACFLUX and \FMC ?}
 
 \begin{figure*}
-	\includegraphics[width=12cm]{images/flow_galaxy.png}
-    \caption{Flow chart...}
+	\includegraphics[width=10.7cm]{images/flow_galaxy.png}
+    \caption{Flow chart that shows the Spatial and Photometric \BGS target selections in \DECaLS data from the Legacy Survey \DReight. The spatial selection of \BGS targets are shown in gray and are divided in two kinds, one defined by the geometric-based cuts around the bright sources i.e., Bright Stars (\BS), Large Galaxies (\LG) and Globular Clusters (\GC), and by pixel-based cuts such as the number of observations (\NOBS). The photometric selection of \BGS targets is divided in four kinds; Star-Galaxy separation, Fibre Magnitude Cuts (\FMC), Colour Cuts (\CC) and Quality Cuts (\QCs) defined by \FRACMASKED, \FRACIN, \FRACFLUX and \FLUXIVAR. The blue boxes show the resulted kept objects in terms of the area (in degrees) and number density (per square degree) broken into bright and faint before and after each of the \BGS cuts classes, while the red boxes shown the same information but for the rejected objects. If more than one type of masking is presented at each stage (each of the gray or purple hexagons), then the dark-red boxes show the results for the combination of the masks avoiding overlaps (as it is the case of the Geometric Masking and the last two photometric cuts) and the light-red boxes shows the results for each individual mask. The upper ($^*$) in blue rectangles shows the target densities without the corrected area by previous masks while densities with not upper ($^*$) does account for previous masking for the area.}
     \label{fig:flow_galaxy}
 \end{figure*}
 
