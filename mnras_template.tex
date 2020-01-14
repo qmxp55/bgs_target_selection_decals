@@ -563,7 +563,38 @@ DEV models have a sharp profile but wit broader wings than the petrosian model a
 
 
 %\subsection{Number counts}
-\subsection{Validation of the Star-Galaxy separation in GAMA fields}$r-\RPETRO$
+\subsection{Validation of the Star-Galaxy separation in GAMA fields}
+\subsubsection{The PSF-type galaxies}
+
+From the the star-galaxy separation definition in section~\ref{subsec:star_galaxy}, we allow some of this galaxies to be PSF best-fit objects by \TRACTOR. We are talking of the order of $4$ deg$^{-2}$ within the \DECaLS footprint. This galaxies present a star behaviour in Figure~\ref{fig:fmc} which makes us question of their galaxy nature. To unveil this, we use \GAMA redshifts. 
+
+\begin{table}
+\centering
+\begin{tabular}{ |p{2cm}||p{2.5cm}|p{2.5cm}| }
+ \hline
+ {\bf Sample} & $\eta_{BM}$ [deg$^{-2}$] & $\eta_{AM}$ [deg$^{-2}$] \\
+ \hline
+ PSF $\&$ BGS & $3.91$ & $1.77$ \\
+ \hline
+ \hline
+ {\bf Subsample} & $f_{BM}$ [$\%$] & $f_{AM}$ [$\%$] \\
+ \hline
+ $\&$ Not in GAIA  & $39.33$ ($1.54$ deg$^{-2}$) & $1.29$ ($0.02$ deg$^{-2}$) \\
+ $\&$ AEN star  & $57.75$ ($2.26$ deg$^{-2}$) & $97.42$ ($1.73$ deg$^{-2}$) \\
+ $\&$ AEN galaxy  & $2.92$ ($0.11$ deg$^{-2}$) & $1.29$ ($0.02$ deg$^{-2}$) \\
+ \hline
+\end{tabular}
+\caption{The table shows on top the target density of the PSF-type BGS galaxies within three out of four of the \GAMA fields footprint (G09, G12, G15) before (second column) and after (third column) the cross-match with \GAMA. Subsequent rows show the fraction and target density for disjoint subsamples of the PSF-type BGS sample: not in \GAIA, AEN stars and AEN galaxies.}
+\label{tab:bgs_psf_gama}
+\end{table}
+
+\begin{figure}
+	\includegraphics[width=\columnwidth]{images/psf_bgs_gama_redshift}
+    \caption{Redshift distribution from \GAMA DR3 of PSF-type BGS galaxies cross-matched with three out of four of the \GAMA fields (G09, G12, G15). The four distributions correspond to the matched sample (gray) and the disjoint subsamples comprising galaxies not in \GAIA (green) and stars and galaxies defined by the AEN classification (blue and red respectively). The red-dashed line points to the redshift star-galaxy separation at $z=0.02$.}
+    \label{fig:matched_sample_z}
+\end{figure}
+
+First we reduce or \DECaLS footprint of that of \GAMA resulting in a reduced area of $175$ deg$^2$ after accounting for the geometric maskings (i.e., masking around large galaxies, bright stars, globular clusters and completeness in the three bands). The \GAMA fields used are the same G09, G12, G15. Within this footprint, the \BGS PSF-type galaxies (main sample) have a density of $3.91$ deg$^{-2}$ and a density of $1.77$ deg$^{-2}$ after the cross-match (matched sample) with \GAMA. We subdivide the two samples into three disjoint subsamples: not in \GAIA, AEN star and AEN galaxy. The AEN star and AEN galaxy are stars and galaxies defined by the Astrometric Excess Noise classification addressed in appendix~\ref{app:sgmodels}. Results of this are shown in Table~\ref{tab:bgs_psf_gama} where besides the target density of the samples ($\eta_{BM}$ and $\eta_{AM}$), we include the fraction of the subsamples ($f_{BM}$ and $f_{AM}$). The subindex $BM$ and $AM$ refers to before matching and after matching with \GAMA respectively. Our matched sample represent $45 \%$ of the matched sample however, it does not seem to be representative of the main sample with $97 \%$ of its targets classified as AEN stars. Such results suggest a bias is being applied to AEN stars which totally make sense as \TRACTOR force a PSF best-fit to all AEN stars. This would explain the $\sim 58 \%$ of BGS galaxies that has a PSF best-fit but still we have a remain $\sim 42 \%$ which need further investigation. The assumption of \TRACTOR wrongly classifying the stars and galaxies within GAIA using its AEN classification (see Appendix~\ref{app:sgmodels}), and hence wrongly assigning fluxes to such targets, can be corroborate with the \GAMA redshifts. Figure~\ref{fig:matched_sample_z} shows the \GAMA redshifts for the disjoint subsamples of the matched sample. We define the redshift star-galaxy separation at $z=0.02$ \citep{add cite...} and it is clear how almost all the AEN stars well define the \BGS redshift distribution. 
 
 
 
