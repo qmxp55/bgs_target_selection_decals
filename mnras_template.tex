@@ -425,7 +425,8 @@ One of the major challenges for \BGS is the separation of stars and galaxies. In
 Posterior photometric-based cuts includes colour outliers in $g-r$ and $r-z$ and some quality cuts that relies on the low accuracy in its flux measurement. Such quality cuts are based on \FRACMASKED, \FRACFLUX and \FRACIN \TRACTOR outputs in any of the three bands.
 
 \begin{figure*}
-	\includegraphics[width=19cm]{images/gz_Grr_bgsbutsg_hexbin}
+	\includegraphics[width=12cm]{images/gz_Grr_bgsbutsg_hexbin_extended}
+	\includegraphics[width=5cm]{images/gz_Grr_bgsbutsg_hexbin_psf}
 	%\includegraphics[width=17cm]{images/r_rfibmag_bgsbutfmc_hexbin}
 	%\includegraphics[width=17cm]{images/gr_rz_bgs_hexbin}
     \caption{Colour-colour plot $g-z$ and $G-rr$ of stars and galaxies according to the \GAIA classification after the Geometric and Pixel cuts of the spatial-based cuts (see  figure \ref{fig:flow1}) and after the photometric-based cuts (see figure \ref{fig:flow2}) except from the Star-galaxy separation cut itself. $G$ is the \GAIA $G$-band photometric magnitude from the \GAIA DR2 catalogue and $rr$ is the $r$-band magnitude from the LS \DReight without extinction correction. $g$ and $z$ are the $g$-band and $z$-band magnitudes from the LS \DReight catalogues with extinction corrections both. The plots shows cross-matched LS \DReight objects with \GAIA DR2 only and was broken in the five morphology classes from \TRACTOR best-fitting model. The red-dashed line draws the threshold limit at $G-rr = 0.6$ for stars and galaxies ($G-rr < 0.6$ for stars and $G-rr > 0.6$ for galaxies). The colour in the plots show the number counts ranging from $1$ to $5000$ objects except for thr PSF-type objects which goes from $1$ to $2$ Millions. We have included the fraction of galaxies and stars according to this classification at the top-left corner and bottom-left corner respectively. The total amount of objects within each plot and the target density is at top-right corner.}
@@ -449,7 +450,8 @@ Many efforts have been made in star-galaxy classification since the beginning of
 \omar{do we need to include information regarding the matching between \GAIA and \TRACTOR i.e., the matching distance, epoch corrections, etc.?}
 
 \begin{figure*}
-	\includegraphics[width=19cm]{images/r_rfibmag_bgsbutfmc_hexbin}
+	\includegraphics[width=12cm]{images/r_rfibmag_bgsbutfmc_hexbin_extended}
+	\includegraphics[width=5cm]{images/r_rfibmag_bgsbutfmc_hexbin_psf}
     \caption{ \BGS galaxies in the $r$-band total magnitude versus $r$-band fibre magnitude from the LS \DReight. The results were divided into the five different \TRACTOR best-fit morphology model. The colour bar shows the number counts ranging from $1$ to $20,000$ for four of the best-fit models with the exception of the PSF-type galaxies that runs from $1$ to $2000$. The red-dashed line shows the \FMC cut where we reject everything that is above that threshold. Number on top-left and bottom-right corner are the fraction of galaxies rejected and kept respectively while numbers at top-right corner shows the total number of galaxies and its target density.}
     \label{fig:fmc}
 \end{figure*}
@@ -535,17 +537,12 @@ In  Appendix~\ref{app:galview} we change the order in which we implement the \BG
     \label{fig:skymap_densities}
 \end{figure*}
 
-\begin{figure}
-	\includegraphics[width=\columnwidth]{images/pixhist_bright_faint.png}
-    \caption{Pixel density distribution...}
-    \label{fig:pixdens}
-\end{figure}
 
 \section{Catalogue Properties}
 %\subsection{North Vs South}
 As an initial assess of the \BGS target selection, we carried comparisons with the \GAMA Main Survey \citep{10.1093/mnras/stx3042} and with the MXXL light-cone catalogue \citep{Smith:2017tzz}. We compare the magnitude, target density and clustering properties. Using \GAMA redshifts, we asses our asses our star-galaxy classification and plot the cross-match redshift distribution. 
 
-\subsection{Magnitude definition with GAMA}
+\subsection{Magnitude definition and redshift distribution with GAMA}
 
 We use the \GAMA DR3 Main Survey, which has a $98.85 \%$ redshift completeness, to match with our \BGS target catalogue. In terms of the footprint and quality of the \GAMA data, we choose three out of the four \GAMA fields: G09, G12, G15, ignoring G02 as this is only partially covered by \DECaLS footprint. \GAMA main survey is complete to r petrosian (\RPETRO) of $19.8$ and to get reliable redshifts, we select targets with \GAMA \NQ with a value of $3$ or more. The area of each \GAMA field is $59.98$ deg$^2$ meaning that our matched sample has a total area of $\sim 180$ deg$^2$.
 
@@ -555,11 +552,19 @@ We use the \GAMA DR3 Main Survey, which has a $98.85 \%$ redshift completeness, 
     \label{fig:bgs_gama_magdiff}
 \end{figure*}
 
-In principle, we match \GAMA with the whole LS \DReight within the \GAMA footprint rather than match \GAMA with \BGS, allowing us to get more information of our \BGS catalogue. The matching distance we took is $1$ arcsec.
+In principle, we match \GAMA with the whole LS \DReight within the \GAMA footprint rather than match \GAMA with \BGS, allowing us to get more information of our \BGS catalogue. The matching distance we took is $1$ arcsec and to this reduce LS \DReight we refer as the reduced \DReight.
 
-In Fig.\ref{fig:bgs_gama_magdiff} we compare LS \DReight $r$ magnitude with \GAMA \RPETRO by plotting $r$ vs $r-\RPETRO$ for \BGS galaxies cross-matched with \GAMA. To see how this difference is affected by \TRACTOR model fits, we break them into the five \TRACTOR morphologies. The red-dashed line is the median of $r-\RPETRO$ showing the amount of offset between the catalogues. The colour bar shows the number counts, and the top-left number shows the fraction of galaxies plotted out of the total \BGS galaxies matched with \GAMA. 
+In Fig.\ref{fig:bgs_gama_magdiff} we compare reduced \DReight $r$ magnitude with \GAMA \RPETRO by plotting $r$ vs $r-\RPETRO$ for \BGS galaxies cross-matched with \GAMA. To see how this difference is affected by \TRACTOR model fits, we break them into the five \TRACTOR morphologies. The red-dashed line is the median of $r-\RPETRO$ showing the amount of offset between the catalogues. The colour bar shows the number counts, and the top-left number shows the fraction of galaxies plotted out of the total \BGS galaxies matched with \GAMA. 
+
+\begin{figure}
+	\includegraphics[width=\columnwidth]{images/bgs_gama_z}
+    \caption{Redshift distribution of \BGS galaxies cross-matched with \GAMA DR3 broken into bright ($r$-band magnitude lower than $19.5$) and faint ($19.5 < r < 20$) galaxies according to \BGS.  Solid gray shows the overall galaxies.}
+    \label{fig:bgs_gama_z}
+\end{figure}
 
 DEV models have a sharp profile but wit broader wings than the petrosian model and any other of the \TRACTOR models. The EXP model tend to be less sharp and with less broader wings than the DEV model, however, it still catches more average flux than the petrosian model. REX model is similar to the EXP model but with less flux income. The median values of these models shown negative values, which are relatively small for REX and EXP galaxies, and twice or more bigger for DEV galaxies. This behaviour is expected for $r-\RPETRO$ if the models from the LS \DReight receives more flux income than \GAMA \RPETRO. The story is different for the PSF galaxies that shown a positive offset, meaning that the petrosian model is picking up more flux than the PSF. The positive offset can be understood as errors in the magnitudes due bad fitting of extended sources. We know \TRACTOR force some of their targets to be fitted as PSF only and this might be a consequence of that. Despite the positive values in $r-\RPETRO$ for PSF galaxies, the overall median value is negative ($-0.124$) which means \GAMA \RPETRO magnitude goes $\sim 0.1$ fainter than the $r$ magnitude from the \LS \DReight. 
+
+In terms of redshift, Figure~\ref{fig:bgs_gama_z} shows \GAMA redshift for the cross-matched \BGS and \GAMA objects (solid gray) which represent a target density of $\sim 965$ deg$^{-2}$. We broke the sample into bright (solid blue) and faint (solid orange) \BGS galaxies.
 
 
 %\subsection{Number counts}
@@ -596,13 +601,38 @@ From the the star-galaxy separation definition in section~\ref{subsec:star_galax
 
 First we reduce or \DECaLS footprint of that of \GAMA resulting in a reduced area of $175$ deg$^2$ after accounting for the geometric maskings (i.e., masking around large galaxies, bright stars, globular clusters and completeness in the three bands). The \GAMA fields used are the same G09, G12, G15. Within this footprint, the \BGS PSF-type galaxies (main sample) have a density of $3.91$ deg$^{-2}$ and a density of $1.77$ deg$^{-2}$ after the cross-match (matched sample) with \GAMA. We subdivide the two samples into three disjoint subsamples: not in \GAIA, AEN star and AEN galaxy. The AEN star and AEN galaxy are stars and galaxies defined by the Astrometric Excess Noise classification addressed in appendix~\ref{app:sgmodels}. Results of this are shown in Table~\ref{tab:bgs_psf_gama} where besides the target density of the samples ($\eta_{BM}$ and $\eta_{AM}$), we include the fraction of the subsamples ($f_{BM}$ and $f_{AM}$). The subindex $BM$ and $AM$ refers to before matching and after matching with \GAMA respectively. Our matched sample represent $45 \%$ of the matched sample however, it does not seem to be representative of the main sample with $97 \%$ of its targets classified as AEN stars. Such results suggest a bias is being applied to AEN stars which totally make sense as \TRACTOR force a PSF best-fit to all AEN stars. This would explain the $\sim 58 \%$ of BGS galaxies that has a PSF best-fit but still we have a remain $\sim 42 \%$ which need further investigation. The assumption of \TRACTOR wrongly classifying the stars and galaxies within GAIA using its AEN classification (see Appendix~\ref{app:sgmodels}), and hence wrongly assigning fluxes to such targets, can be corroborate with the \GAMA redshifts. Figure~\ref{fig:matched_sample_z} shows the \GAMA redshifts for the disjoint subsamples of the matched sample. We define the redshift star-galaxy separation at $z=0.02$ \citep{add cite...} and it is clear how almost all the AEN stars well define the \BGS redshift distribution. 
 
+\subsubsection{Assess of \BGS cuts with \GAMA}
+
+\begin{figure}
+	\includegraphics[width=\columnwidth]{images/bgs_rejs_heatmap}
+	
+	\vspace{1cm}
+	
+	\includegraphics[width=\columnwidth]{images/bgs_rejs_gama_heatmap}
+    \caption{Top: Heatmap showing the target density of missed \BGS objects in the reduced LS \DReight. The diagonal quantities are densities by each of the spatial and photometric \BGS cuts while the off-diagonal shows densities of two combined cuts. Bottom: Heatmap showing the subsample of those missed objects that has a cross-match with \GAMA DR3.}
+    \label{fig:heatmaps}
+\end{figure}
+
+When cross-matching the reduce \DReight with \GAMA DR3, we get a matched target density of $1030.3$ deg$^{-2}$ which represent a fraction of $1.27 \%$ of the reduced \DReight target density and a fraction of $99.6 \%$ of the \GAMA DR3 target density. $948.5$ deg$^{-2}$ out of the $1030.3$ deg$^{-2}$ are \BGS targets and the remain $81.8$ deg$^{-2}$ are missed objects in \BGS due the spatial and photometric cuts we apply, and since the reduced \DReight allows fainter than $r$-mag of $20$, these faint objects are also included in the missed objects density. Figure~\ref{fig:heatmaps} shows heatmaps with the target density rejected by each of the spatial and photometric cuts on the diagonal, and the off-diagonal quantities shows density of missed objects by combinations of two cuts. Top heatmap include missed \BGS objects in the reduced \DReight while bottom heatmap show the subsample of these missed objects that has a cross-match with \GAMA. Besides the huge different in the target density between the missed \BGS in the reduced sample and the same sample corss-matched with \GAMA, the bottom plot, with the \GAMA cross-match, is not a representative sample of missed \BGS from the reduced sample with the exception of the star-galaxy separation rejections that has the highest number in both samples, and objects rejected by the geometric bright star mask. This difference is mainly due the nature of the catalogues where the LS \DReight is way deeper than \GAMA.
+
+\begin{figure}
+	\includegraphics[width=\columnwidth]{images/rejs_gama_redshift}
+    \caption{Redshift distribution of missed \GAMA targets in \BGS with LS \DReight $r$-band magnitude below $20$ and broken into the different \BGS rejections categories. Blue solid line shows \GAMA objects missed due star-galaxy separation (SG), green solid due the large galaxy masking (\LG), yellow solid due bright star masking (\BS), red solid due fibre magnitude cut (\FMC) and purple solid due the remain cuts (\CC and \QCs). The dashed gray line shows the redshift distribution of \BGS galaxies cross-matched with \GAMA. Black dashed line divide our sample between \GAMA stars and galaxies at $z=0.02$.}
+    \label{fig:rejs_gama_z}
+\end{figure}
+
+From bottom heatmap we can see that most of the missed \BGS found in \GAMA are due star-galaxy separation and masking around bright stars. The fact that most of the missed objects are due star-galaxy does not mean that our star-galaxy definition is doing it wrong. In Figure~\ref{fig:rejs_gama_z} we have the \GAMA redshifts distribution of the main \BGS rejections that sum a total target density of $81.8$ deg$^{-2}$. The sample labelled as {\it other} in solid purple is the composition of all the photometric cuts except for the \FMC and star-galaxy separation. The gray dashed line shows the distribution of \BGS cross-matched with \GAMA. Only star-galaxy rejects $29$ deg$^{-2}$ of which $64 \%$ are stars indeed according to \GAMA redshifts and the remain $36 \%$ are galaxies. Such galaxies are close to our threshold limit of our \GAIA star-galaxy separation. We found that $2/3$ of this rejected galaxies are AEN stars meaning that its photometry has been compromised, if they are extended objects as \GAMA points, then their \TRACTOR flux is a fraction of what it really is and hence their magnitude is shifted to fainter values. This translates to lower values in $Grr$ of figure~\ref{fig:Grr-gz} and moving them away of the galaxy locus.
+
+Objects missed by the bright stars masking follows the \BGS shape as well as missed objects by the large galaxies masking which peaks at higher redshifts. \GAMA galaxies within the geometric galaxy mask is expected as \GAMA does not perform a large galaxy masking. However, \GAMA does perform a bright star masking which is less aggressive than the LS \DReight masking, \GAMA bright star masking removes $\sim 1$ deg$^2$ \citep{10.1111/j.1365-2966.2010.16282.x} while LS \DReight removes $\sim 5$ deg$^2$.
+
+Next we have missed galaxies due the \FMC. This include high redshift galaxies and although it also contains some \GAMA stars these are a small fraction (less than $7 \%$). The remain missed \GAMA objects is due colour-colour outliers (\CC) and the quality cuts (\QCs) which represent a total of $\sim 5.8$ deg$^{-2}$ for $r$-band magnitudes below $20$.
 
 
-\subsection{Redshift distribution from GAMA}
-\subsection{Angular correlation function}
-\subsection{Angular cross-correlation with stars}
-
+%\subsection{Redshift distribution from GAMA}
 \subsection{Potential Systematics}
+\subsubsection{Mitigation of systematics with linear weights on stellar density}
+\subsection{Galaxy clustering with Angular correlation function}
+\subsection{Angular cross-correlation with stars}
 
 
 
@@ -664,7 +694,22 @@ In addition to the star-galaxy separation order change compared to the selection
 \end{figure*}
 
 
-\section{Comparisons between star-galaxy classification models}\label{app:sgmodels}
+\section{Comparison of Star-Galaxy separation with AEN and Grr}\label{app:sgmodels}
+
+For objects detected in \GAIA, \TRACTOR and \BGS have adopted different star-galaxy classification methods. \BGS uses the difference in the \GAIA $G$-band magnitude and the \TRACTOR raw $r$-band magnitude (not corrected for extinction) as a measure of how extended the object is (see section~\ref{subsec:star_galaxy}). In contrast, Tractor makes use of the \GAIA Astrometric Excess noise (AEN) parameter. The agreement between these two definitions is not perfect and this is an issue as some objects that \BGS classifies as galaxies ($\sim 6$ deg$^{-2}$) \TRACTOR treats as stars and only measures PSF magnitudes.
+
+Tractor only fits PSF models to \GAIA objects it classifies as stars. Namely those that satisfy the following conditions:
+
+\begin{equation}
+	\begin{cases}
+      AEN < 10^{0.5}, & G \leq 19\\
+      AEN < 10^{0.5 + 0.2(G - 19)}, & G \geq 19.\\
+	\end{cases}
+\end{equation}
+
+$G$ is the \GAIA photometric $G$-band. We refer to this classification as AEN classification. 
+
+
 
 \iffalse
 \section{Some extra material}
