@@ -81,7 +81,7 @@
 \newcommand{\CORRFLUX}{{\textsc{flux/mw\_transmission}}\xspace}
 \newcommand{\CP}{\textsc{cp}\xspace}
 \newcommand{\DECam}{\textsc{dec}am\xspace}
-\newcommand{\DECaLS}{\textsc{dec}a\textsc{LS}\xspace}
+\newcommand{\DECaLS}{\textsc{dec}a\textsc{ls}\xspace}
 \newcommand{\DESI}{\textsc{desi}\xspace}
 \newcommand{\DESITARGET}{\textsc{desitarget}\xspace}
 \newcommand{\DES}{\textsc{des}\xspace}
@@ -113,8 +113,9 @@
 \newcommand{\LSLGA}{\textsc{lslga}\xspace}
 \newcommand{\LSST}{\textsc{lsst}\xspace}
 \newcommand{\MGS}{\textsc{mgs}\xspace}
-\newcommand{\MWTRANSMISSION}{{\textsc{ mw\_transmission}}\xspace}
-\newcommand{\MzLS}{\textsc{M}s\textsc{LS}\xspace}
+\newcommand{\MWTRANSMISSION}{{\textsc{mw\_transmission}}\xspace}
+\newcommand{\MXXL}{\textsc{mxxl}\xspace}
+\newcommand{\MzLS}{\textsc{m}z\textsc{ls}\xspace}
 \newcommand{\MASKBITS}{\textsc{maskbits}\xspace}
 \newcommand{\MS}{\textsc{ms}\xspace}
 \newcommand{\NOAO}{\textsc{noao}\xspace}
@@ -143,8 +144,9 @@
 \newcommand{\Wtwo}{\textsc{w2}\xspace}
 \newcommand{\PS}{\textsc{ps}1\xspace}
 \newcommand{\LEGACYPIPE}{\textsc{legacypipe}\xspace}
-\newcommand{\NANOMAGIES}{\textsc{nanomagies}\xspace}
-\newcommand{\NANOMAGIE}{\textsc{nanomagie}\xspace}
+\newcommand{\NANOMAGIES}{\textsc{nanomaggies}\xspace}
+\newcommand{\NANOMAGIE}{\textsc{nanomaggie}\xspace}
+\newcommand{\addref}{\textcolor{purple}{(Add reference.)}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -182,8 +184,11 @@ $^{3}$Another Department, Different Institution, Street Address, City Postal Cod
 
 % Abstract of the paper
 \begin{abstract}
-This project focuses on the steps taken to produce a reliable and complete input galaxy catalogue for the \DESI Bright Galaxy Sample (\BGS) using the Legacy Survey \DReight \DECam data. We analyze some of the main problems faced by the \DESI \BGS target selection (e.g. contamination by stars and fragmented bright galaxies, star-galaxy separation, low surface brightness) by defining a new way to select \BGS galaxies using \GAIA photometry and by implementing geometrical and photometric masks that reduce the number of spurious objects. The resulting catalogue is cross-matched with three of the \GAMA fields to assess the redshift success rate, and with mock catalogues and \SDSS data to validate the galaxy clustering of our selection. Validation of the \BGS selection criteria is also assessed looking at the correlations of the density galaxy field with the imaging systematics, achieving high accuracy completeness with deviations down to $7\%$.
+This project focuses on the steps taken to produce a reliable and complete input galaxy catalogue for the \DESI Bright Galaxy Sample (\BGS) using the Legacy Survey \DReight \DECam data. We analyze some of the main problems faced by the \DESI \BGS target selection 
+(e.g. contamination by fragmented stars and bright galaxies, star-galaxy separation, low surface brightness) by defining a new way to select \BGS galaxies using \GAIA photometry and by implementing geometrical and photometric masks that reduce the number of spurious objects. The resulting catalogue is cross-matched with three of the \GAMA fields to assess the completeness of the galaxy catalogue, and with mock catalogues and \SDSS data to validate the galaxy clustering of our selection. Validation of the \BGS selection criteria is also assessed by measuring the correlation of the target galaxy density field with systematic properties of the imaging.  We find such systematic correlations to be below $7\%$.
 \end{abstract}
+
+
 
 % Select between one and six entries from the list of approved keywords.
 % Don't make up new ones.
@@ -200,19 +205,33 @@ keyword1 -- keyword2 -- keyword3
 \DESI \citep{Aghamousa:2016zmz}\footnote{http://desi.lbl.gov/} is a multi-fibre ground-based dark energy experiment that will study baryon acoustic oscillations (\BAO) and the growth of structure through redshift-space distortions (\RSD) with a wide-area galaxy and quasar redshift survey. \DESI is the successor to the successful Stage-III \BOSS redshift
 survey \citep{doi:10.1093/mnras/sts314} and complements imaging surveys such as the Stage-III Dark Energy Survey \citep{Crocce:2017iwq} (\DES, operating 2013-2018) and the Stage-IV Large Synoptic Survey Telescope (\LSST, which is planned to start early in the next decade). The \DESI instrument is a robotically-actuated, fibre-fed spectrograph capable of taking up
 to $5,000$ simultaneous spectra over the wavelength range $360$ to $980$~nm. The fibres feed ten three-arm spectrographs with spectral resolution $R = \lambda/\Delta\lambda$ between $2000$ and $5500$, depending on the
-wavelength. The \DESI instrument will be used to conduct a five-year survey\footnote{It is planned to start in $2020$} designed to cover $14\,000$ $\textrm{deg}^2$. To trace the underlying dark matter distribution, spectroscopic targets will be selected in four classes from imaging data. \DESI will measure luminous red galaxies (LRGs) starting at $z = 0.4$ up to $z = 1$, emission line galaxies (\ELGs) up to $z = 1.7$, quasars at higher redshifts ($2.1 < z < 3.5$), and a magnitude-limited Bright Galaxy Survey (\BGS) up to $z = 0.6$ comprising approximately $10$ million galaxies with a median $z \approx 0.2$. 
+wavelength. The \DESI instrument will be used to conduct a five-year survey\footnote{It is planned to start in $2020$} designed to cover $14\,000$ $\textrm{deg}^2$. To trace the underlying dark matter distribution, spectroscopic targets will be selected in four classes from imaging data. \DESI will measure luminous red galaxies (\LRGs) starting at $z = 0.4$ up to $z = 1$, emission line galaxies (\ELGs) up to $z = 1.7$, quasars at higher redshifts ($2.1 < z < 3.5$), and a magnitude-limited Bright Galaxy Survey (\BGS) up to $z = 0.6$ comprising approximately $10$ million galaxies with a median $z \approx 0.2$. 
+
 In total, more than 30 million galaxy and quasar redshifts will be obtained to measure the \BAO feature and determine the matter power spectrum, including redshift space distortions.
 
-\DESI observations are divided in two main schemes: the Bright Time Survey (\BTS) and the Dark Time Survey (\DTS). \BGS will be part of the \BTS where the Moon is significantly above the horizon ($> 40 - 50$ deg away the Moon), and the sky is too bright to allow efficient observation of fainter targets.  
-\mike{Constraint on moon frac. as well.}
+
+
+\DESI observations are divided in two main programmes: the Bright Time Survey (\BTS) and the Dark Time Survey (\DTS). \BGS will be part of the \BTS and is conducted when the Moon is significantly above the horizon
+and the sky is too bright to allow efficient observation of fainter targets.  The \BTS 
+excludes the few nights closest to full moon
+and \BGS always targets fields
+$> 40 - 50$ deg away the Moon. 
 \BGS alone will be ten times larger than the \SDSS-I and \SDSS-II main sample of 1 million bright galaxies observed from $1999-2008$ \citep{Abazajian:2003jy}.
 
-The galaxy sample for the \BGS is intended to be a flux-limited, $r$-band selected sample of galaxies. The magnitude limit is determined by the total amount of observing bright time and the exposure times required to achieve the desired redshift efficiency. This target selection is, in essence, a deeper version of the galaxy target selection for the \SDSS main galaxy sample \cite[\MGS,][]{2002AJ....124.1810S}. We can make quite accurate 
-predictions of 
-the expected properties of the \BGS target sample by making use of the mock catalogues created from numerical simulations (i.e., the MXXL light-cone catalogue \citep{Smith:2017tzz}). These mocks have identical properties to the \MGS at low redshift, including the luminosity function,
-colour distribution, clustering properties and their evolution is constrained by measurements from the \GAMA survey.
+The galaxy sample for the \BGS is intended to be a flux-limited, $r$-band selected sample of galaxies. The magnitude limit is determined by the total amount of  bright observing time and the exposure times required to achieve the desired redshift efficiency. This target selection is, in essence, a deeper version of the  target selection for the \SDSS main galaxy sample \cite[\MGS,][]{2002AJ....124.1810S}.
 
-\DESI \BGS expect to have a density of just over $800$ galaxies per $\textrm{deg}^2$ in a primary sample defined by a faint $r$-band magnitude limit of $19.5$ and further $\sim 600$~$\textrm{deg}^2$ in a secondary sample defined by the magnitude range $19.5 < r < 20$. For future references we will refer to the brighter and fainter \BGS sets as \BGSB and \BGSF respectively. A few percent of galaxies in \DESI \BGS will be lost due to deblending errors, superposition with bright stars, and other artifacts that typically affect imaging catalogues. The aim of this work is to provide a reliable input bright galaxy catalogue for \DESI. 
+To make predictions for \BGS target sample 
+we make use of the mock galaxy catalogue created 
+from the \MXXL $N$-body simulation  \citep{Angulo2012} by
+\cite{Smith:2017tzz}. This mock is tuned match the
+ luminosity function,
+colour distribution, and clustering properties of the
+\SDSS \MGS at low redshift, and their evolution to redshift $z \approx 0.5$ as measured in the \GAMA survey
+\citep{2015MNRAS.452.2087L}.
+
+\DESI \BGS is expected to have a target density of just over $800$ galaxies per square degree in a primary sample defined by a faint $r$-band magnitude limit of $19.5$ and further $\sim 600$~$\textrm{deg}^{-2}$ in a secondary sample defined by the magnitude range $19.5 < r < 20$. From herein we will refer to the brighter and fainter \BGS sets as \BGSB and \BGSF respectively. A few percent of galaxies in \DESI \BGS will be lost due to deblending errors, superposition with bright stars, and other artifacts that typically affect imaging catalogues. The aim of this work is to provide a reliable input galaxy catalogue for \DESI \BGS. 
+
+
 
 This paper is organised as follows: in Section~\ref{sec:data_sets} we describe the Legacy Survey data used to select our targets and the secondary datasets used to tune the selection. In Section~\ref{sec:spatial_masking} and~\ref{sec:photo_select} we define the spatial and photometric cuts used to define our \BGS catalogue. In Section~\ref{sec:galaxy_view} we analyze our selection process from a galaxy only perspective different to sections \ref{sec:spatial_masking} and \ref{sec:photo_select}. Section \ref{sec:cat_properties} assesses the \BGS catalogue by comparing with existing overlapping spectroscopic catalogues (e.g., GAMA and \SDSS) and with mocks \citep{Smith:2017tzz}.
 \shaun{I think the galaxy only perspective should come after the sections 
@@ -220,43 +239,54 @@ describing the effect of the spatial masking and then photometric cuts on all ob
 
 \section{Data sets}\label{sec:data_sets}
 
-During the \BGS target selection process we made use of different data sets. The main data set used is the Legacy Survey \DReight (\LS \DReight for short) from which we select our targets. Then we have the secondary catalogues used for masking purposes such as the \TYCHO star catalogue \citep{2000A&A...355L..27H}, the \GAIA catalogue \citep{2016A&A...595A...1G}, the Legacy Survey Large Galaxy Atlas (\LSLGA) composed of large galaxies \citep[in prep.]{} and a Globular Cluster catalogue provided by OpenNGC catalogue. Additionally, we use a combination of \GAIA and LS photometry to perform star-galaxy classification.
+
+During the \BGS target selection process we make use of several different data sets. The main data set used is the Legacy Survey \DReight (\LS \DReight for short) from which we select our targets. We also make use of secondary catalogues used for masking purposes such as the \TYCHO \citep{2000A&A...355L..27H} star catalogue, 
+ the \GAIA catalogue \citep{2016A&A...595A...1G},
+the Legacy Survey Large Galaxy Atlas (\LSLGA) (Moustakas in prep.) composed of large galaxies and a Globular Cluster catalogue from the OpenNGC catalogue \addref. Additionally, we use a combination of
+\GAIA  and \LS photometry to perform star-galaxy classification.
 
 \shaun{include references for all the above catalogues} 
 
 
 \subsection{Legacy Survey \DReight (\DECam)}
 
-The Dark Energy Camera Legacy Survey (\DECaLS), the Beijing-Arizona Sky Survey (\BASS), and the Mayall $z$-band Legacy Survey are the combination of public projects that constitute the \DESI Legacy Imaging Survey  \citep[hereafter the Legacy Survey][]{2019AJ....157..168D}. The Legacy Imaging Survey was created with the sole purpose of getting the necessary target density, coverage and depths that \DESI requires. The \SDSS \citep{Wang:2013noa} and Pan-STARRS1 \citep[\PS][]{2016arXiv161205560C} surveys are both too shallow to reliable select the \DESI targets, while the \DES survey\citep{Abbott:2005bi} reaches the adequate depth for \DESI, it only covers $5000$ deg$^2$, most in the South Galactic Cap (\SGC) and only $\sim 1114$ deg$^2$ is within \DESI footprint.
 
-\shaun{include references for all the above catalogues} 
+The Dark Energy Camera Legacy Survey (\DECaLS), the Beijing-Arizona Sky Survey (\BASS), and the Mayall $z$-band Legacy Survey (\textsc{m}z\textsc{ls}) are the combination of public projects that constitute the \DESI Legacy Imaging Survey  \citep[hereafter the Legacy Survey][]{2019AJ....157..168D}. The Legacy Imaging Survey was created with the sole purpose of getting the necessary target density, coverage and depths that \DESI requires. The \SDSS \citep{Wang:2013noa} and Pan-STARRS1 \citep[\PS][]{2016arXiv161205560C} 
+surveys are both too shallow to reliably select the \DESI targets, while the \DES survey \citep{Abbott:2005bi} reaches the adequate depth for \DESI, it only covers $5000$ deg$^2$, most in the South Galactic Cap (\SGC) and only $\sim 1130$ deg$^2$ is within \DESI footprint.
+
+
+\shaun{Wang is not the right reference for SDSS imaging as a whole } 
 
 This work is based on the eighth release of the Legacy Survey project (LS \DReight) which is the first release that integrates data from all of the individual components of the Legacy Survey (\BASS, \DECaLS and \MzLS). However, this paper will focused only on \DECaLS data.
 
-\DECaLS in LS \DReight comprises observations from 9th August 2014 through 7th March 2019 and includes data from a range of non-\DECaLS surveys. \DECaLS images come from the Dark Energy Camera (\DECam; Flaugher et al. 2015) at the 4-m Blanco telescope at the Cerro Tololo Inter-American Observatory. \DECam has $62$ $2048\times 4096$ pixel format $250 \mu$-thick \LBNL \CCDs arranged in a roughly hexagonal $\sim 3.2$ deg$^2$ field of view. The pixel scale is $0.262$ arcsec/pix and has high sensitivity across a broad wavelength range of $\sim 400-1000$~nm. 
+\DECaLS in \LS \DReight comprises observations from 9th August 2014 through 7th March 2019 and includes data from a range of non-\DECaLS surveys. \DECaLS images come from the Dark Energy Camera (\DECam; Flaugher et al. 2015) at the 4-m Blanco telescope at the Cerro Tololo Inter-American Observatory. \DECam has $62$ $2048\times 4096$ pixel format $250 \mu$m-thick \LBNL \CCDs arranged in a roughly hexagonal $\sim 3.2$ deg$^2$ field of view. The pixel scale is $0.262$ arcsec/pix and has high sensitivity across a broad wavelength range of $\sim 400-1000$~nm. 
 
-\DECaLS end up targeting $\sim 15174$ deg$^2$, this is above the planed area of $\sim 9350$ deg$^2$\citep{2019AJ....157..168D}. Since LS \DReight data goes beyond the aimed \DESI footprint of $\sim 14000$ deg$^2$\footnote{Current LS \DReight imaging covers around $\sim 20332$ deg$^2$.}, we are going to consider only data within the \DESI footprint, this is $\sim 9717$ deg$^2$ of \DECaLS data from which $\sim 1114$ deg$^2$ are covered by the other \DECam data coming from the Dark Energy Survey\citep[\DES,][]{Abbott:2005bi}. Figure \ref{fig:decals_in_desi} shows the sky map coverage of \DECaLS imaging compared with \DECaLS imaging within the \DESI footprint. \DECaLS is the only survey that covers the entire \SGC ($\sim 4394$ deg$^2$) and the \NGC ($\sim 5323$ deg$^2$) at declination $\delta \leq +\ang{32.375}$. 
+\DECaLS ended up targeting $\sim 15174$ deg$^2$ \shaun{I think this number is wrong for DECALS. It must be including MzLS and BASS. Presumably the number should be closer to 9717}
+, this is above the planned area of $\sim 9350$ deg$^2$\citep{2019AJ....157..168D}. Since LS \DReight data goes beyond the aimed \DESI footprint of $\sim 14000$ deg$^2$\footnote{Current LS \DReight imaging covers around $\sim 20332$ deg$^2$.}, we are going to consider only data within the \DESI footprint, this is $\sim 9717$ deg$^2$ of \DECaLS data from which $\sim 1114$ deg$^2$ are covered by the other \DECam data coming from the Dark Energy Survey\citep[\DES,][]{Abbott:2005bi}. Fig.~\ref{fig:decals_in_desi} shows the sky map coverage of \DECaLS imaging compared with \DECaLS imaging within the \DESI footprint. \DECaLS is the only survey that covers the entire \SGC ($\sim 4394$ deg$^2$) and the \NGC ($\sim 5323$ deg$^2$) at declination $\delta \leq +\ang{32.375}$. 
 
 \begin{figure}
 	\includegraphics[width=\columnwidth]{images/decals_in_desi_footprint}
-    \caption{Sky map of \DECam imaging footprint responsible of the \DECaLS data is shown in gray. The circles comprises the \DESI tiles and hence the \DESI footprint for \DECaLS data coming from LS \DECam  imaging in blue and from DES \DECam imaging in red.}
+    \caption{The sky map of the footprint of all the \DECam imaging used in \DECaLS is shown in gray. The red and blue circles show the \DESI tiles that define the \DESI footprint.
+    The blue tiles are the ones for which the data comes from the \LS \DECam imaging while for the red tiles the data comes from \DES \DECam imaging. The green line shows the locus of the Galactic plane.}
     \label{fig:decals_in_desi}
-
-    \mike{I'll raise this as a broader point, but it's not clear to me that it wouldn't be better to look at the SV dataset to sample a wider range of conditions.}
 \end{figure}
 
 
-In order to fulfill the target classes required for the \DESI cosmology programme (\BGS, \LRGs, \ELGs and \QSOs), it was concluded that a three-band $grz$ optical imaging programme, complemented by \WISE \Wone and \Wtwo photometry, would be sufficient to select all target classes. The minimal  depth\footnote{The depths are defined as the optimal-extraction (forced-photometry) depths for a galaxy near the depth limits of \DESI, where that galaxy is defined to be an exponential profile with a half-light radius of $r_{\rm half}= 0.45$~arcsec.} required is $g=24.0$,$r=23.4$ and $z=22.5$. The minimum number of visits for this is 2. \DECam can reach these required depths in a total exposure times of $140$, $100$ and $200$ sec in g, r, z in nominal\footnote{Here ``nominal" is defined as photometric and clear skies with seeing FWHM of $1.3$~arcsec, airmass of $1.0$, and sky brightness of $22.04$, $20.91$ and $18.46$ AB mag arcsec$^{-2}$, respectively.} conditions.
+In order to fulfill the target classes required for the \DESI cosmology programme (\BGS, \LRGs, \ELGs and \QSOs), it was concluded that a three-band g,r and~z optical imaging programme, complemented by \WISE \Wone and \Wtwo photometry, would be sufficient to select all target classes. The minimal  depth\footnote{The depths are defined as the optimal-extraction (forced-photometry) depths for a galaxy near the depth limits of \DESI, where that galaxy is defined to be an exponential profile with a half-light radius of $r_{\rm half}= 0.45$~arcsec.} required is $g=24.0$,$r=23.4$ and $z=22.5$. The minimum number of visits for this is two. \DECam can reach these required depths in a total exposure times of $140$, $100$ and $200$ sec in g, r, z in nominal\footnote{Here ``nominal" is defined as photometric and clear skies with seeing FWHM of $1.3$~arcsec, airmass of $1.0$, and sky brightness 
+in g,r and z of $22.04$, $20.91$ and $18.46$ AB mag arcsec$^{-2}$, respectively.} conditions.
 
-\shaun{The imaging surveys have finished and so the numbers above should be what it did rather that what it aimed to do}
 
 
-All data from the Legacy Surveys are first processed at \NOAO/Tucson\footnote{https://www.noao.edu/noao/staff/fvaldes/CPDocPrelim/PL201\_3.html} throughout the \NOAO Community Pipeline (\CP). Each instrument and telescope combination has its own \CP that takes raw data as an input and provides detrended and calibrated data products such as instrumental calibration (e.g., bias subtraction and flat fielding), astrometric calibration (e.g., mapping the distortions and providing a world coordinate system, or \WCS), photometric characterization (e.g., magnitude zero point calibration) and artifact identification, masking and/or removal (e.g., removal of cross-talk and pupil ghosts, and identification and masking of cosmic rays). 
 
-The Legacy Surveys source catalogues are constructed using {\it Tractor}\footnote{https://github.com/dstndstn/tractor}(\cite{2016ascl.soft04008L}) throughout a post-processing catalogue generation pipeline called \LEGACYPIPE \footnote{https://github.com/legacysurvey/legacypipe}. \DESI Imaging Scientist Dustin Lang has developed the \TRACTOR forward-modelling approach to
+All data from the Legacy Surveys are first processed at \NOAO/Tucson\footnote{https://www.noao.edu/noao/staff/fvaldes/CPDocPrelim/PL201\_3.html} through the \NOAO Community Pipeline (\CP). Each instrument and telescope combination has its own \CP that takes raw data as an input and provides detrended and calibrated data products such as instrumental calibration (e.g., bias subtraction and flat fielding), astrometric calibration (e.g., mapping the distortions and providing a world coordinate system, or \WCS), photometric characterization (e.g., magnitude zero point calibration) and artifact identification, masking and/or removal (e.g., removal of cross-talk and pupil ghosts, and identification and masking of cosmic rays). 
+
+The Legacy Surveys source catalogues are constructed using {\it Tractor}\footnote{https://github.com/dstndstn/tractor}\citep{2016ascl.soft04008L} through a post-processing catalogue generation pipeline called \LEGACYPIPE \footnote{https://github.com/legacysurvey/legacypipe}. \DESI Imaging Scientist Dustin Lang has developed \TRACTOR forward-modelling approach to
 perform source extraction on pixel-level data. This is a statistically rigorous approach to fitting the differing \PSF and pixel sampling of these data, which is particularly important as the optical data have a typical \PSF of $\approx 1$~arcsec.
-The \TRACTOR takes as input the individual images from multiple exposures in multiple
-bands, with different seeing in each. A simultaneous fit is performed for sources to the pixel-level data of all images. Thus, if a source is determined to be a point source, it is photometered as a point source in every band and every exposure. If it is found to be a morphologically extended source, then the same light profile is consistently fit in all images. This produces object fluxes and colours that are consistently-measured across the wide-area imaging surveys input to \DESI target selection. In general, The \TRACTOR improves target selection for all \DESI classes by allowing information from low signal-to-noise measurements to be utilized. The \TRACTOR catalogues will ultimately include source positions, fluxes, shape parameters, and morphological quantities that can be used to discriminate extended sources from point-sources, together with errors on these quantities. \BGS, being a flux-limited catalogue, will in principle require information of the flux only in the $r$-band. But, since we have tune the selection other \TRACTOR outputs have been brought in. The main \TRACTOR outputs required for \BGS comprises the fluxes\footnote{Fluxes outputs from \TRACTOR are in \NANOMAGIES. A flux of $1$ \NANOMAGIE corresponds to an AB magnitude of $22.5$.} in all the three bands ($g,r$ and $z$), the number of observations (\NOBS) in the three bands, the predicted flux (in the $r$-band only) within a fibre (\FIBERFLUX\footnote{\FIBERFLUX units are \NANOMAGIES}) in $1$~arcsec Gaussian seeing. The Galactic extinction values are derived from the \textsc{sfd98} maps \citep{1998ApJ...500..525S} and reported in linear units of transmission (\MWTRANSMISSION) in the $g,r$ and $z$ bands, with $1$ representing a fully transparent region of the Milky Way and $0$ representing a fully opaque region. The extinction coefficients for the \DECam filters were computed by Eddie Schlafly \citep{2011ApJ...737..103S} through airmass of $1.3$, computed for a $7000$K source spectrum. These coefficients are $A / E(B-V) = 3.995$, $3.214$, $2.165$, $1.592$, $1.211$, $1.064$ and then multiplied by the \textsc{sfd98} $E(B-V)$ values at the coordinates of each object to derive the $g, r$ and $z$ \MWTRANSMISSION values. And last the profile-weighted fraction information in the three bands; \FRACMASKED, \FRACFLUX and \FRACIN.
+\TRACTOR takes as input the individual images from multiple exposures in multiple
+bands, with different seeing in each. A simultaneous fit is performed for sources to the pixel-level data of all images. Thus, if a source is determined to be a point source, it is photometered as a point source in every band and every exposure. If it is found to be a morphologically extended source, then the same light profile is consistently fit in all images. This produces object fluxes and colours that are consistently-measured across the wide-area imaging surveys input to \DESI target selection. In general, \TRACTOR improves target selection for all \DESI classes by allowing information from low signal-to-noise measurements to be utilized. The \TRACTOR catalogues will ultimately include source positions, fluxes, shape parameters, and morphological quantities that can be used to discriminate extended sources from point-sources, together with errors on these quantities. The \BGS survey is flux limited in the r-band but since \TRACTOR does simultaneous fits in g, r and z we chose also to impose quality cuts in the other bands when selecting the \BGS targets. The main \TRACTOR outputs required for \BGS comprises the fluxes\footnote{Fluxes outputs from \TRACTOR are in \NANOMAGIES. A flux of $1$ \NANOMAGIE corresponds to an AB magnitude of $22.5$.} in all the three bands ($g,r$ and $z$), the number of observations (\NOBS) in the three bands, the predicted flux (in the $r$-band only) within a fibre (\FIBERFLUX\footnote{\FIBERFLUX units are \NANOMAGIES}) in $1$~arcsec Gaussian seeing. The Galactic extinction values are derived from the \textsc{sfd98} maps \citep{1998ApJ...500..525S} and reported in linear units of transmission (\MWTRANSMISSION) in the $g,r$ and $z$ bands, with $1$ representing a fully transparent region of the Milky Way and $0$ representing a fully opaque region. The extinction coefficients for the \DECam filters were computed by Eddie Schlafly \citep{2011ApJ...737..103S} through airmass of $1.3$, computed for a $7000$~K source spectrum. These coefficients are $A / E(B-V) = 3.995$, $3.214$, $2.165$, $1.592$, $1.211$, $1.064$ 
+\shaun{ are the first three of these the g r and z coefficients? We don't need to quote others that we don't use}
+and then multiplied by the \textsc{sfd98} $E(B-V)$ values at the coordinates of each object to derive the $g, r$ and $z$ \MWTRANSMISSION values. Finally, in each band, there are a set of quality measures
+\FRACMASKED, \FRACFLUX and \FRACIN that quantify the quality of the data in each profile fit. We describe these in more detail in Section~\ref{sec:QC}.
 
 Fluxes in \TRACTOR transform to AB magnitudes as follows:
 \begin{eqnarray}  
@@ -265,22 +295,27 @@ Fluxes in \TRACTOR transform to AB magnitudes as follows:
 \end{eqnarray}
 where (\ref{eq:mag_uncorr}) does not correct for Galactic extinction while (\ref{eq:mag_corr}) does.
 
-Regarding the completeness in the three bands of the \DECam Legacy Survey \DReight (\LS \DReight), in Table~\ref{tab:band_passes} it is shown the area covered for the different numbers of passes and in the different filters. These results involve data only within the \DESI footprint as of Figure~\ref{fig:decals_in_desi}. Our \DECaLS footprint covers a total of $9717$ deg$^2$, this translates to a $\sim 99.5 \%$ completeness in all the three bands (g,r,z) for at least one pass, $\sim 95.3 \%$ completeness for at least two passes and $\sim 70.7 \%$ completeness for at least three passes.
 
-\begin{table}[h!]
+
+Regarding the completeness in the three bands of the \DECam Legacy Survey \DReight (\LS \DReight), in Table~\ref{tab:band_passes} it is shown the area covered for the different numbers of passes and in the different filters. These results involve data only within the \DESI footprint as of Fig.~\ref{fig:decals_in_desi}. Our \DECaLS footprint covers a total of $9717$ deg$^2$, this translates to a $\sim 99.5 \%$ completeness in all the three bands (g,r,z) for at least one pass, $\sim 95.3 \%$ completeness for at least two passes and $\sim 70.7 \%$ completeness for at least three passes.
+
+\begin{table}
+\caption{The area of \DECam in Legacy Survey \DReight  covered by more than 1, 2 and 3~passes
+separately in the three different filters and combined (i.e. having greater than   
+1, 2 or  3~passes in each of the 3 bands).
+We have restricted our results to data within the \DESI footprint as shown in  Fig.~\ref{fig:decals_in_desi}.}
+\label{tab:band_passes}
 \centering
-\begin{tabular}{ |p{3cm}||p{1.4cm}|p{1.4cm}|p{1.4cm}|  }
+\begin{tabular}{ |p{2.9cm}||p{1.2cm}|p{1.2cm}|p{1.2cm}|  }
  \hline
  {\bf Band/Number of Passes} & $\geq 1$ & $\geq 2$ & $\geq 3$\\
  \hline
  $g$-band   & $9687$ deg$^2$ & $9454$ deg$^2$ & $7769$ deg$^2$ \\
  $r$-band   & $9686$ deg$^2$ & $9422$ deg$^2$ & $7569$ deg$^2$ \\
  $z$-band   & $9686$ deg$^2$ & $9487$ deg$^2$ & $8036$ deg$^2$ \\
- All bands jointly & $9669$ deg$^2$ & $9257$ deg$^2$ & $6869$ deg$^2$ \\
+ Combined & $9669$ deg$^2$ & $9257$ deg$^2$ & $6869$ deg$^2$ \\
  \hline
 \end{tabular}
-\caption{The table indicates the area covered by \DECam in Legacy Survey \DReight and in \DES survey for different numbers of passes and in different filters. We have restricted our results to data within the \DESI footprint as of Figure~\ref{fig:decals_in_desi}.}
-\label{tab:band_passes}
 \end{table}
 
 \mike{I'll raise this as a broader point, but it's not clear to me that it wouldn't be better to look at the SV dataset to sample a wider range of conditions.}
@@ -511,6 +546,7 @@ We also get rid of weird colours in galaxies. This are objects that falls far ou
 The colour cut (\CC) rejects an additional $9.84$ deg$^{-2}$ of which $5.07$ deg$^{-2}$ are bright galaxies and $4.77$ deg$^{-2}$ are faint.
 
 \subsection{Quality Cuts}
+\label{sec:QC}
 
 In section \ref{subsec:pix_masking} we mentioned that bad pixels, associated to bitmask cut, happened to be a subset of our Quality Cuts (\QCs). The \QCs are conformed by,
 
